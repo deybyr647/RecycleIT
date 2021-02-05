@@ -1,0 +1,22 @@
+.faRecycle{
+    transition: all 300ms ease-out;
+}
+
+.faRecycle:hover{
+    color: green;
+}
+
+@media(prefers-reduced-motion: no-preference){
+    .faRecycle{
+        animation: fa-recycle-spin infinite 12s linear;
+    }
+}
+
+@keyframes fa-recycle-spin{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}

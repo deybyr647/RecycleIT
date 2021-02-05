@@ -1,11 +1,13 @@
 import Link from 'next/link';
-import { ReactChild } from 'react';
 import {Nav, Navbar} from 'react-bootstrap';
+import {FaRecycle} from 'react-icons/fa';
+
+import styles from '../styles/etc.module.css';
 
 const Navigation = () => {
     return(
         <Navbar bg='light' variant='light' expand='lg' className=''>
-            <Navbar.Brand>Home</Navbar.Brand>
+            <Navbar.Brand><FaRecycle className={styles.faRecycle}/></Navbar.Brand>
             <Navbar.Toggle aria-controls='nav'/>
             <Navbar.Collapse id='nav'>
                 <Nav>
