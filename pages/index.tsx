@@ -25,11 +25,7 @@ const HomeContent = () => {
         </Col>
       </Row>
 
-      
-
       <Row className=''>
-        
-
         <Col>
           <Carousel>
             <Carousel.Item>
@@ -41,8 +37,6 @@ const HomeContent = () => {
             </Carousel.Item>
           </Carousel>
         </Col>
-
-        
       </Row>
     </Container>
   )

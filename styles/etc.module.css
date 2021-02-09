@@ -6,6 +6,10 @@
     color: green;
 }
 
+.anchors a:active, .anchors a:hover{
+    text-decoration: none;
+}
+
 @media(prefers-reduced-motion: no-preference){
     .faRecycle{
         animation: fa-recycle-spin infinite 12s linear;
