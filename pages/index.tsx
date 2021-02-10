@@ -14,6 +14,10 @@ interface Toggle{
   callback?: Function
 }
 
+interface HomeContent{
+  children: React.ReactNode
+}
+
 const AwareToggle = ({children, eventKey, callback}: Toggle) => {
   const currentEventKey = useContext(AccordionContext);
   const decoratedOnClick = useAccordionToggle(eventKey, () => callback && callback(eventKey));
@@ -27,10 +31,6 @@ const AwareToggle = ({children, eventKey, callback}: Toggle) => {
       {children}
     </Button>
   );
-}
-
-interface HomeContent{
-  children: React.ReactNode
 }
 
 const HomeContent = ({children}: HomeContent) => {
