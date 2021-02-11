@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/google-map-react": "^2.1.0",
     "bootstrap": "^4.6.0",
     "google-map-react": "^2.1.9",
     "next": "10.0.6",

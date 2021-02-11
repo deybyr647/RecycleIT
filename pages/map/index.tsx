@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import {Container, Row, Col, Form, Button} from 'react-bootstrap';
-import {BiCurrentLocation, BiSearchAlt} from 'react-icons/bi';
+import {BiCurrentLocation, BiSearchAlt, BiStreetView} from 'react-icons/bi';
 import GoogleMapReact from 'google-map-react';
 
 import Footer from '../../components/footer';
@@ -26,24 +26,49 @@ interface MapPageContent{
 const GMap = ({center, children}: GMap) => {
     //Creates Google Map
     const defaultCoords: Coords = {lat: 40.7128, lng: -74.0060}; //Defaults to NYC coords
+    const mapOptions = {
+        mapTypeControl: true,
+        streetViewControl: true
+    }
 
     return(
-        <div style={{width: "100%", height: "80vh"}}>
-            <GoogleMapReact
-                bootstrapURLKeys={{key: mapsKey}}
-                defaultCenter={defaultCoords}
-                center={center}
-                defaultZoom={11}
-            >
-                {children}
-            </GoogleMapReact>
+        <div className='shadow' style={{width: "100%", height: "80vh"}}>
+            {center.lat && center.lng ? 
+                <GoogleMapReact
+                    yesIWantToUseGoogleMapApiInternals
+                    bootstrapURLKeys={{key: mapsKey, libraries:[]}}
+                    defaultCenter={defaultCoords}
+                    center={center}
+                    defaultZoom={11}
+                    options={mapOptions}
+                >
+                    <BiStreetView
+                        //@ts-ignore
+                        lat={center.lat}
+                        lng={center.lng}
+                        text="Marker"
+                        size={26}
+                        style={{position:'absolute', transform: 'translate(-50%, -50%)'}}
+                    />
+
+                    {children}
+                </GoogleMapReact>
+                : 
+                <GoogleMapReact
+                    bootstrapURLKeys={{key: mapsKey, libraries:[]}}
+                    defaultCenter={defaultCoords}
+                    defaultZoom={11}
+                    options={mapOptions}
+                >
+                </GoogleMapReact>
+            }
         </div>
     )
 }
 
 const MapPageContent = ({children}: MapPageContent) => {
     const [zip, setZip] = useState('');
-    const [userCoords, setUserCoords] = useState({lat: 40.7128, lng: -74.0060}); //Defaults to NYC coords
+    const [userCoords, setUserCoords] = useState({lat: null, lng: null});
 
     const changeHandler = (e: any): void => {
         //Sets zip code state from form value
@@ -64,7 +89,7 @@ const MapPageContent = ({children}: MapPageContent) => {
                     lng: position.coords.longitude
                 }
 
-                setUserCoords(prev => {
+                setUserCoords((prev: any) => {
                     return {
                         ...prev,
                         lat: userCoords.lat,
@@ -92,6 +117,7 @@ const MapPageContent = ({children}: MapPageContent) => {
             <Row className='mt-2'>
                 <Col>
                     <GMap
+                        //@ts-ignore
                         center={userCoords}
                     />
                 </Col>
