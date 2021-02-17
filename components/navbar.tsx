@@ -6,7 +6,7 @@ import styles from "../styles/etc.module.css";
 
 const Navigation = () => {
     return(
-        <Navbar bg="light" variant="light" expand="lg" className="mb-3">
+        <Navbar variant="dark" expand="md" className={`mb-3 ${styles.footerNav}`}>
             <Navbar.Brand className={styles.anchors}><FaRecycle className={styles.faRecycle}/> <Link href="/">RecycleIT</Link></Navbar.Brand>
             <Navbar.Toggle aria-controls="nav"/>
             <Navbar.Collapse id="nav">
