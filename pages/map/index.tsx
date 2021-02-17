@@ -2,7 +2,9 @@ import { useState } from "react";
 import GoogleMapReact from "google-map-react";
 
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { BiCurrentLocation, BiSearchAlt, BiStreetView } from "react-icons/bi";
+import { BiCurrentLocation, BiSearchAlt } from "react-icons/bi";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import styles from "../../styles/map.module.css";
 
 import MetaData from "../../components/metadata";
 import Navigation from "../../components/navbar";
@@ -39,12 +41,12 @@ const GMap = ({center, children}: GMapProps) => {
                     defaultZoom={11}
                     options={mapOptions}
                 >
-                    <BiStreetView
+                    <FaMapMarkerAlt
                         //@ts-ignore
                         lat={center.lat}
                         lng={center.lng}
                         text="Marker"
-                        size={26}
+                        size={36}
                         style={{position:"absolute", transform: "translate(-50%, -50%)"}}
                     />
 
@@ -52,8 +54,9 @@ const GMap = ({center, children}: GMapProps) => {
                 </GoogleMapReact>
                 : 
                 <GoogleMapReact
+                    yesIWantToUseGoogleMapApiInternals
                     //@ts-ignore
-                    bootstrapURLKeys={{key: mapsKey, libraries:[]}}
+                    bootstrapURLKeys={{key: mapsKey, libraries: []}}
                     defaultCenter={defaultCoords}
                     defaultZoom={11}
                     options={mapOptions}
@@ -101,8 +104,8 @@ const MapPageContent = () => {
                 <Col>
                     <Form className="d-flex flex-row justify-content-between" onSubmit={e => e.preventDefault()}>
                         <Form.Control required placeholder="Enter Zip Code..." value={zip} onChange={changeHandler}/>
-                        <Button type="submit" className="mx-2"><BiSearchAlt/></Button>
-                        <Button type="submit" onClick={getUserCoords}><BiCurrentLocation/></Button>
+                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`}><BiSearchAlt/></Button>
+                        <Button variant="info" type="submit" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
                     </Form>
                 </Col>
             </Row>
