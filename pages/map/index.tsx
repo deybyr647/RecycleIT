@@ -99,7 +99,7 @@ const MapPageContent = () => {
     };
 
     return(
-        <Container>
+        <Container fluid>
             <Row className="mb-2">
                 <Col>
                     <Form className="d-flex flex-row justify-content-between" onSubmit={e => e.preventDefault()}>

@@ -33,13 +33,13 @@ const ContextAwareToggle = ({children, eventKey, onToggle}: ContextAwareTogglePr
 
 const HomeContent = () => {
   return(
-    <Container>
-      <Row className="mb-4">
-        <Col>
-          <Card className="shadow border-0">
+    <Container fluid>
+      <Row>
+        <Col lg={6} className="mb-4 mx-1">
+          <Card className="shadow border-0 h-100">
             <Image
               src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2074&q=80" 
-              className="w-100"
+              className="w-100 h-100"
               alt="Recycling Bin"
               rounded
             />
@@ -53,24 +53,22 @@ const HomeContent = () => {
             </Card.ImgOverlay>
           </Card>
         </Col>
-      </Row>
 
-      <Row>
-        <Col>
+        <Col className="mb-4 mx-1">
           <Carousel className="shadow">
             <Carousel.Item>
-              <Image src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" className="d-block w-100"/>
+              <Image src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" className="w-100"/>
             </Carousel.Item>
 
             <Carousel.Item>
-              <Image src="https://images.unsplash.com/photo-1513615040015-9ab281b0f9e7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" className="d-block w-100"/>
+              <Image src="https://images.unsplash.com/photo-1513615040015-9ab281b0f9e7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" className="w-100"/>
             </Carousel.Item>
           </Carousel>
         </Col>
       </Row>
 
-      <Row className="mt-4">
-        <Col xs={12} sm={6} md={12} lg={6}>
+      <Row className="mt-1">
+        <Col lg={6} className="mx-1">
           <Jumbotron className={`${styles.contentContainer} shadow`}>
             <h3 className="text-center">The Ins &amp; Outs of Recycling</h3>
             <Accordion className="mt-3">
@@ -94,7 +92,7 @@ const HomeContent = () => {
           </Jumbotron>
         </Col>
 
-        <Col>
+        <Col className="mx-1">
           <Jumbotron className={`${styles.contentContainer} shadow`}>
             <h3 className="text-center">Ways To Contribute</h3>
             <Accordion className="mt-3">
