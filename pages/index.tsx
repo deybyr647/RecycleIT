@@ -34,49 +34,29 @@ const ContextAwareToggle = ({children, eventKey, onToggle}: ContextAwareTogglePr
 const HomeContent = () => {
   return(
     <Container fluid>
-      <Row>
-        <Col lg={6} className="mb-4 mx-1">
-          <Card className="shadow border-0 h-100">
-            <Image
-              src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2074&q=80" 
-              className="w-100 h-100"
-              alt="Recycling Bin"
-              rounded
-            />
-
-            <Card.ImgOverlay className={`d-flex align-items-end ${styles.homeOverlay}`}>
-              <Card.Body className="text-white">
-                  <Card.Title>RecycleIT</Card.Title>
-                  <Card.Text>A new, simple way to recycling</Card.Text>
-              </Card.Body>
-              <BiRecycle size={36} className={etcStyles.faRecycle} style={{color: "white"}}/>
-            </Card.ImgOverlay>
-          </Card>
-        </Col>
-
-        <Col className="mb-4 mx-1">
-          <Carousel className="shadow">
-            <Carousel.Item>
-              <Image src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" className="w-100"/>
-            </Carousel.Item>
-
-            <Carousel.Item>
-              <Image src="https://images.unsplash.com/photo-1513615040015-9ab281b0f9e7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80" className="w-100"/>
-            </Carousel.Item>
-          </Carousel>
-        </Col>
-      </Row>
-
       <Row className="mt-1">
-        <Col lg={6} className="mx-1">
+        <Col className="mx-1">
           <Jumbotron className={`${styles.contentContainer} shadow`}>
             <h3 className="text-center">The Ins &amp; Outs of Recycling</h3>
+            
+            <Card className="mt-3">
+              <Card.Header className="justify-content-center d-flex">
+                <ContextAwareToggle eventKey="0">What Is Recycling?</ContextAwareToggle>
+              </Card.Header>
+                <Card.Img src="https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1161&q=80"/>
+                <Card.Body>
+                  Simply put, recycling is the process of converting waste materials into new materials! Of course,
+                  there's more to it than just creating new from the old. The process is also beneficial towards the surrounding environment
+                  in many ways!
+                </Card.Body>
+            </Card>
+            
+
             <Accordion className="mt-3">
               <Card>
                 <Card.Header className="justify-content-center d-flex">
                   <ContextAwareToggle eventKey="0">What Is Recycling?</ContextAwareToggle>
                 </Card.Header>
-
                 <Accordion.Collapse eventKey="0">
                   <>
                     <Card.Img src="https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1161&q=80"/>
@@ -92,26 +72,58 @@ const HomeContent = () => {
           </Jumbotron>
         </Col>
 
+        <Col lg={6} className="mb-4">
+          <Row className="mx-1 justify-content-center">
+            <Card className="shadow border-0 h-100">
+              <Image
+                src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
+                className="w-100 h-100"
+                alt="Recycling Bin"
+                rounded
+              />
+
+              <Card.ImgOverlay className={`d-flex align-items-end ${styles.homeOverlay}`}>
+                <Card.Body className="text-white">
+                    <Card.Title>RecycleIT</Card.Title>
+                    <Card.Text>A new, simple way to recycling</Card.Text>
+                </Card.Body>
+                <BiRecycle size={36} className={etcStyles.faRecycle} style={{color: "white"}}/>
+              </Card.ImgOverlay>
+            </Card>
+          </Row>
+        </Col>
+
         <Col className="mx-1">
           <Jumbotron className={`${styles.contentContainer} shadow`}>
             <h3 className="text-center">Ways To Contribute</h3>
-            <Accordion className="mt-3">
-              <Card>
+              <Card className="mt-3">
                 <Card.Header className="justify-content-center d-flex">
                   <ContextAwareToggle eventKey="0">Recycling Guidelines</ContextAwareToggle>
                 </Card.Header>
-
-                <Accordion.Collapse eventKey="0">
-                  <>
-                    <Card.Img src="https://pixfeeds.com/images/save-nature/1280-508877770-different-colored-recycle-waste-bins.jpg"/>
-                    <Card.Body>
-                      One of the key steps in the journey towards contributing is learning about reycling guidelines!
-                      You can head over to the EPA's (Environment Protection Agency) website to learn the basics! You may
-                      also want to search the web for guidelines specific to your community!
-                    </Card.Body>
-                  </>
-                </Accordion.Collapse>
+                  <Card.Img variant="top" src="https://pixfeeds.com/images/save-nature/1280-508877770-different-colored-recycle-waste-bins.jpg"/>
+                  <Card.Body>
+                    One of the key steps in the journey towards contributing is learning about reycling guidelines!
+                    You can head over to the EPA's (Environment Protection Agency) website to learn the basics! You may
+                    also want to search the web for guidelines specific to your community!
+                  </Card.Body>
               </Card>
+
+              <Accordion className="mt-3">
+                <Card>
+                  <Card.Header className="justify-content-center d-flex">
+                    <ContextAwareToggle eventKey="0">What Is Recycling?</ContextAwareToggle>
+                  </Card.Header>
+                  <Accordion.Collapse eventKey="0">
+                    <>
+                      <Card.Img src="https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1161&q=80"/>
+                      <Card.Body>
+                        Simply put, recycling is the process of converting waste materials into new materials! Of course,
+                        there's more to it than just creating new from the old. The process is also beneficial towards the surrounding environment
+                        in many ways!
+                      </Card.Body>
+                    </>
+                  </Accordion.Collapse>
+                </Card>
             </Accordion>
           </Jumbotron>
         </Col>
