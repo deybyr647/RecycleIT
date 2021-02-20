@@ -35,7 +35,7 @@ const HomeContent = () => {
   return(
     <Container fluid>
       <Row className="mt-1">
-        <Col className="mx-1">
+        <Col>
           <Jumbotron className={`${styles.contentContainer} shadow`}>
             <h3 className="text-center">The Ins &amp; Outs of Recycling</h3>
             
@@ -72,14 +72,13 @@ const HomeContent = () => {
           </Jumbotron>
         </Col>
 
-        <Col lg={6} className="mb-4">
-          <Row className="mx-1 justify-content-center">
+        <Col md={12} lg={4} xl={6} className="mb-4 order-first order-lg-0">
+          <Row>
             <Card className="shadow border-0 h-100">
-              <Image
+              <Card.Img
                 src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
-                className="w-100 h-100"
+                className=""
                 alt="Recycling Bin"
-                rounded
               />
 
               <Card.ImgOverlay className={`d-flex align-items-end ${styles.homeOverlay}`}>
@@ -93,7 +92,7 @@ const HomeContent = () => {
           </Row>
         </Col>
 
-        <Col className="mx-1">
+        <Col md={12} lg={4} xl={3}>
           <Jumbotron className={`${styles.contentContainer} shadow`}>
             <h3 className="text-center">Ways To Contribute</h3>
               <Card className="mt-3">
