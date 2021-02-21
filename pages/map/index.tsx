@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GoogleMapReact from "google-map-react";
 
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { BiCurrentLocation, BiSearchAlt } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import styles from "../../styles/map.module.css";
@@ -22,6 +22,37 @@ interface GMapProps {
     children?: React.ReactNode
 };   
 
+interface MarkerProps {
+    color: string,
+    coords: Coords
+}
+
+const LandingMessage = () => {
+    const [alert, setAlert] = useState(true);
+
+    return(
+        <Alert variant="info" show={alert} dismissible onClose={() => setAlert(false)}>
+            <Alert.Heading>Welcome To The Map</Alert.Heading>
+            <p>
+                Here you can see location and other information of recycling centers!
+                You can also see your saved recycling centers for convenience!
+            </p>
+            <hr/>
+            <p>Enter a zip code or use your current location to get started searching...</p>
+        </Alert>
+    )
+}
+
+const Marker = ({coords, color}: MarkerProps) => (
+    <FaMapMarkerAlt
+        color={color}
+        lat={coords.lat}
+        lng={coords.lng}
+        size={36}
+        className={styles.marker}
+    />
+)
+
 const GMap = ({center, children}: GMapProps) => {
     const defaultCoords: Coords = {lat: 40.7128, lng: -74.0060};
     const mapOptions = {
@@ -30,40 +61,24 @@ const GMap = ({center, children}: GMapProps) => {
     };
 
     return(
-        <div className="shadow" style={{width: "100%", height: "80vh"}}>
-            {center.lat && center.lng ? 
-                <GoogleMapReact
-                    yesIWantToUseGoogleMapApiInternals
-                    //@ts-ignore
-                    bootstrapURLKeys={{key: mapsKey, libraries:[]}}
-                    defaultCenter={defaultCoords}
-                    center={center}
-                    defaultZoom={11}
-                    options={mapOptions}
-                >
-                    <FaMapMarkerAlt
+        <>
+            {center.lat && center.lng ?
+                <div className={`${styles.map} shadow`}>
+                    <GoogleMapReact
                         //@ts-ignore
-                        lat={center.lat}
-                        lng={center.lng}
-                        text="Marker"
-                        size={36}
-                        style={{position:"absolute", transform: "translate(-50%, -50%)"}}
-                    />
-
-                    {children}
-                </GoogleMapReact>
-                : 
-                <GoogleMapReact
-                    yesIWantToUseGoogleMapApiInternals
-                    //@ts-ignore
-                    bootstrapURLKeys={{key: mapsKey, libraries: []}}
-                    defaultCenter={defaultCoords}
-                    defaultZoom={11}
-                    options={mapOptions}
-                >
-                </GoogleMapReact>
+                        bootstrapURLKeys={{key: mapsKey}}
+                        defaultCenter={defaultCoords}
+                        center={center}
+                        defaultZoom={11}
+                        options={mapOptions}
+                    >
+                        <Marker coords={center} color="black"/>
+                    </GoogleMapReact>
+                </div>
+                :
+                <LandingMessage/>
             }
-        </div>
+        </>
     );
 }
 
