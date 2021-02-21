@@ -46,6 +46,7 @@ const LandingMessage = () => {
 const Marker = ({coords, color}: MarkerProps) => (
     <FaMapMarkerAlt
         color={color}
+        //@ts-ignore
         lat={coords.lat}
         lng={coords.lng}
         size={36}
