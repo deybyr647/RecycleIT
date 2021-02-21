@@ -23,8 +23,7 @@ interface GMapProps {
 };   
 
 interface MarkerProps {
-    color: string,
-    coords: Coords
+    color: string
 }
 
 const LandingMessage = () => {
@@ -43,12 +42,9 @@ const LandingMessage = () => {
     )
 }
 
-const Marker = ({coords, color}: MarkerProps) => (
+const Marker = ({color}: MarkerProps) => (
     <FaMapMarkerAlt
         color={color}
-        //@ts-ignore
-        lat={coords.lat}
-        lng={coords.lng}
         size={36}
         className={styles.marker}
     />
@@ -73,7 +69,12 @@ const GMap = ({center, children}: GMapProps) => {
                         defaultZoom={11}
                         options={mapOptions}
                     >
-                        <Marker coords={center} color="black"/>
+                        <Marker
+                            //@ts-ignore
+                            lat={center.lat}
+                            lng={center.lng}
+                            color="blue"
+                        />
                     </GoogleMapReact>
                 </div>
                 :
