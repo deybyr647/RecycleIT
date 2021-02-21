@@ -1,5 +1,6 @@
 import { useState } from "react";
-import GoogleMapReact from "google-map-react";
+import GoogleMap from "google-map-react";
+import axios, { AxiosRequestConfig } from "axios";
 
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { BiCurrentLocation, BiSearchAlt } from "react-icons/bi";
@@ -10,6 +11,7 @@ import MetaData from "../../components/metadata";
 import Navigation from "../../components/navbar";
 import Footer from "../../components/footer";
 
+import testData from "./test.json";
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
 
 interface Coords {
@@ -17,7 +19,7 @@ interface Coords {
     lng: number
 };
 
-interface GMapProps {
+interface MapProps {
     center: Coords
     children?: React.ReactNode
 };   
@@ -50,32 +52,65 @@ const Marker = ({color}: MarkerProps) => (
     />
 )
 
-const GMap = ({center, children}: GMapProps) => {
+const Map = ({center, children}: MapProps) => {
     const defaultCoords: Coords = {lat: 40.7128, lng: -74.0060};
     const mapOptions = {
         mapTypeControl: true,
         streetViewControl: true
     };
 
+    const [places, setPlaces] = useState([]);
+
+    const getLocations = async () => {
+        /*
+        const requestConfig: AxiosRequestConfig = {
+            url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
+            method: "get",
+            params: {
+                key: mapsKey,
+                location: `${center.lat},${center.lng}`,
+                radius: 32187,
+                keyword: "recycling center"
+            }
+        }
+
+        let locations = await axios(requestConfig);
+        console.log(locations.data.results);
+        setPlaces(locations.data.results);
+        */
+
+        //@ts-ignore
+        setPlaces(testData.results);
+    }
+
     return(
         <>
             {center.lat && center.lng ?
                 <div className={`${styles.map} shadow`}>
-                    <GoogleMapReact
+                    <GoogleMap
                         //@ts-ignore
                         bootstrapURLKeys={{key: mapsKey}}
                         defaultCenter={defaultCoords}
                         center={center}
                         defaultZoom={11}
                         options={mapOptions}
+                        onTilesLoaded={getLocations}
                     >
                         <Marker
                             //@ts-ignore
                             lat={center.lat}
                             lng={center.lng}
-                            color="blue"
+                            color="red"
                         />
-                    </GoogleMapReact>
+
+                        {places.map((el, index) => {
+                            //@ts-ignore
+                            let coords = el.geometry.location;
+                            //@ts-ignore
+                            return <Marker key={index} lat={coords.lat} lng={coords.lng} color="darkgreen"/>
+                        })}
+                        
+                    </GoogleMap>
                 </div>
                 :
                 <LandingMessage/>
@@ -129,7 +164,7 @@ const MapPageContent = () => {
 
             <Row className="mt-2">
                 <Col>
-                    <GMap
+                    <Map
                         //@ts-ignore
                         center={userCoords}
                     />

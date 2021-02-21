@@ -1,0 +1,800 @@
+{
+    "html_attributions": [],
+    "next_page_token": "ATtYBwLguiiwTjnH5k4M8VxLSiWYYUvayMIsRCAx0qZq2a6Se0wU7ixSQ4bSeizS02hTvh_HpdBoshfzozdd-DwJayU3H9Pm80RSrQ-MLe_I_CUnj_gVXaTc8QTPYlzkK96sqGe6fyDneHySHuGn3f1pYG5CE5smNgQNrYjf0_oZ5yYpHq5OHLeATxstuVl6AQgs7yuCQsHPmkP8fQDR8XTYX_Er2eG8XHa6TecxrLtqKgFBPXCUtXtKDF86mt07UaJp2fFnlw1AL7h9Hl-Fx6To2i_VidJjP7ovYudr0jpK2calxIs5u6QawrcMnfWDWXFu4aAO8H5zYe2KrRiaM_PAvLi96KlSBpos_0ztPDzrvhT9gkFCcczS2e9GeKCiFgQAyjw8oK2rPENpOtlI1KW1dkPzA8qsx0JFJCj5pH1CYsiOlON4YaKDtT-rng1RiQd8exEr",
+    "results": [
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7806114,
+                    "lng": -73.0857997
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.78206992989272,
+                        "lng": -73.08483947010727
+                    },
+                    "southwest": {
+                        "lat": 40.77937027010727,
+                        "lng": -73.08753912989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Islip Recycle Center",
+            "opening_hours": {
+                "open_now": false
+            },
+            "photos": [
+                {
+                    "height": 1932,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/103443053327283883789\">Ian Schneider</a>"
+                    ],
+                    "photo_reference": "ATtYBwJE7JEDKMJQ612JWEsCOysIlC9men2JcR3zMONeytrWrzuS6aPqT6m_9z-X-27PdhEdIIggrLzqMSyI7ZSP31K-fVHNjxhrcLk_kf81TPZtADIlEai2MV_RoC41pP3sZZuKuIXiSnp4cP6FIluC3IIDCvcrGPXKjZ98uhr-QqNZXTBm",
+                    "width": 2576
+                }
+            ],
+            "place_id": "ChIJiXuH0tRJ6IkRq181VR2G88U",
+            "plus_code": {
+                "compound_code": "QWJ7+6M Holbrook, New York",
+                "global_code": "87G8QWJ7+6M"
+            },
+            "rating": 3.8,
+            "reference": "ChIJiXuH0tRJ6IkRq181VR2G88U",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 8,
+            "vicinity": "1155 Lincoln Ave, Holbrook"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.8153915,
+                    "lng": -73.18059439999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.81671822989271,
+                        "lng": -73.17907737010728
+                    },
+                    "southwest": {
+                        "lat": 40.81401857010727,
+                        "lng": -73.18177702989271
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Town of Islip Recycling Centers - Hauppauge Landfill",
+            "opening_hours": {
+                "open_now": false
+            },
+            "place_id": "ChIJG8dJzcow6IkR98fvxEV65L0",
+            "plus_code": {
+                "compound_code": "RR89+5Q Hauppauge, New York",
+                "global_code": "87G8RR89+5Q"
+            },
+            "rating": 4.3,
+            "reference": "ChIJG8dJzcow6IkR98fvxEV65L0",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 9,
+            "vicinity": "440 Blydenburgh Rd, Hauppauge"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.8613162,
+                    "lng": -73.42178489999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.86270902989272,
+                        "lng": -73.42034772010727
+                    },
+                    "southwest": {
+                        "lat": 40.86000937010728,
+                        "lng": -73.42304737989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Huntington Recycling Center",
+            "opening_hours": {
+                "open_now": false
+            },
+            "photos": [
+                {
+                    "height": 5312,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/110192518693681584829\">barry maltese jr</a>"
+                    ],
+                    "photo_reference": "ATtYBwJrGPNR8jb-ednE05HNmZejSvQwP389aUFuyrtL96jbEi8tnapJrPhrD1a2blCqwILwKONJnoxWIQGlQqpPDeUfVPMjDKGElO7YAneOoBVbQO90e5YeUsOAtoUC6r09IS5KSYnhCGKM_8i1Yxt05t7060lcjRTjUEvBHxhstSJ55ECW",
+                    "width": 2988
+                }
+            ],
+            "place_id": "ChIJIf-Jznwo6IkRqRXL7wX6hh8",
+            "plus_code": {
+                "compound_code": "VH6H+G7 Huntington, New York",
+                "global_code": "87G8VH6H+G7"
+            },
+            "rating": 4.1,
+            "reference": "ChIJIf-Jznwo6IkRqRXL7wX6hh8",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 14,
+            "vicinity": "641 New York Ave, Huntington"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.786386,
+                    "lng": -73.21707099999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.78752347989272,
+                        "lng": -73.21566442010727
+                    },
+                    "southwest": {
+                        "lat": 40.78482382010727,
+                        "lng": -73.21836407989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Central Scrap",
+            "opening_hours": {
+                "open_now": false
+            },
+            "place_id": "ChIJBY2RAxIx6IkRTEk4j8o9s-s",
+            "plus_code": {
+                "compound_code": "QQPM+H5 Central Islip, New York",
+                "global_code": "87G8QQPM+H5"
+            },
+            "rating": 3.1,
+            "reference": "ChIJBY2RAxIx6IkRTEk4j8o9s-s",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 7,
+            "vicinity": "127 Brightside Ave, Central Islip"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7561711,
+                    "lng": -73.26321849999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.75749487989273,
+                        "lng": -73.26149582010727
+                    },
+                    "southwest": {
+                        "lat": 40.75479522010728,
+                        "lng": -73.26419547989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Northeast Recycling",
+            "place_id": "ChIJtQEcKxAy6IkRH0P4RYK8BS8",
+            "plus_code": {
+                "compound_code": "QP4P+FP Bay Shore, New York",
+                "global_code": "87G8QP4P+FP"
+            },
+            "rating": 0,
+            "reference": "ChIJtQEcKxAy6IkRH0P4RYK8BS8",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 0,
+            "vicinity": "1612 5th Ave, Bay Shore"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7737159,
+                    "lng": -73.2737193
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.77486077989271,
+                        "lng": -73.27228727010728
+                    },
+                    "southwest": {
+                        "lat": 40.77216112010727,
+                        "lng": -73.27498692989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Island Resources Corporation",
+            "place_id": "ChIJfcnnWf4x6IkR2upMwmGD9rM",
+            "plus_code": {
+                "compound_code": "QPFG+FG Bay Shore, New York",
+                "global_code": "87G8QPFG+FG"
+            },
+            "rating": 5,
+            "reference": "ChIJfcnnWf4x6IkR2upMwmGD9rM",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 2,
+            "vicinity": "135 Pine Aire Dr, Bay Shore"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7584751,
+                    "lng": -73.26411179999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.75981052989272,
+                        "lng": -73.26260912010727
+                    },
+                    "southwest": {
+                        "lat": 40.75711087010728,
+                        "lng": -73.26530877989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Gershow Recycling",
+            "opening_hours": {
+                "open_now": false
+            },
+            "place_id": "ChIJfWCpHRAy6IkREwvzkSbjG1g",
+            "plus_code": {
+                "compound_code": "QP5P+99 Bay Shore, New York",
+                "global_code": "87G8QP5P+99"
+            },
+            "rating": 3.6,
+            "reference": "ChIJfWCpHRAy6IkREwvzkSbjG1g",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 16,
+            "vicinity": "33 McAdam St #2200, Bay Shore"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.809539,
+                    "lng": -73.232991
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.81074077989273,
+                        "lng": -73.23158907010729
+                    },
+                    "southwest": {
+                        "lat": 40.80804112010729,
+                        "lng": -73.23428872989273
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "3 Sixty Recycling Corporation",
+            "place_id": "ChIJzSU7jlYw6IkR8LefmyeIhvU",
+            "plus_code": {
+                "compound_code": "RQ58+RR Hauppauge, New York",
+                "global_code": "87G8RQ58+RR"
+            },
+            "rating": 0,
+            "reference": "ChIJzSU7jlYw6IkR8LefmyeIhvU",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 0,
+            "vicinity": "735 Calebs Path # A, Hauppauge"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7322152,
+                    "lng": -73.38688239999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.73349097989271,
+                        "lng": -73.38578292010727
+                    },
+                    "southwest": {
+                        "lat": 40.73079132010727,
+                        "lng": -73.38848257989271
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Town of Babylon Recyclable Materials Drop Off Center",
+            "opening_hours": {
+                "open_now": false
+            },
+            "place_id": "ChIJh2RbRmkr6IkROb0SSZn2gBE",
+            "plus_code": {
+                "compound_code": "PJJ7+V6 West Babylon, New York",
+                "global_code": "87G8PJJ7+V6"
+            },
+            "rating": 4.9,
+            "reference": "ChIJh2RbRmkr6IkROb0SSZn2gBE",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 9,
+            "vicinity": "57 Field St, West Babylon"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7657127,
+                    "lng": -73.29308739999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.76687817989272,
+                        "lng": -73.29174312010728
+                    },
+                    "southwest": {
+                        "lat": 40.76417852010727,
+                        "lng": -73.29444277989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "St Jude Recycling",
+            "place_id": "ChIJiWc0z-Ut6IkR_pCyJyLiBoU",
+            "plus_code": {
+                "compound_code": "QP84+7Q Bay Shore, New York",
+                "global_code": "87G8QP84+7Q"
+            },
+            "rating": 0,
+            "reference": "ChIJiWc0z-Ut6IkR_pCyJyLiBoU",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 0,
+            "vicinity": "60 Corbin Ave, Bay Shore"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.869789,
+                    "lng": -73.270026
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.87136977989272,
+                        "lng": -73.26833962010727
+                    },
+                    "southwest": {
+                        "lat": 40.86867012010727,
+                        "lng": -73.27103927989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Smithtown Recycling",
+            "opening_hours": {
+                "open_now": false
+            },
+            "place_id": "ChIJhyMOmck66IkR90NFwjBgAy8",
+            "plus_code": {
+                "compound_code": "VP9H+WX Kings Park, New York",
+                "global_code": "87G8VP9H+WX"
+            },
+            "rating": 5,
+            "reference": "ChIJhyMOmck66IkR90NFwjBgAy8",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 1,
+            "vicinity": "133 Old Northport Rd, Kings Park"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7925548,
+                    "lng": -73.11624429999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.79380662989271,
+                        "lng": -73.11502527010727
+                    },
+                    "southwest": {
+                        "lat": 40.79110697010727,
+                        "lng": -73.11772492989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Ecological Recycling Solutions",
+            "place_id": "ChIJsS9WwLY36IkRgjjqKUST8jQ",
+            "plus_code": {
+                "compound_code": "QVVM+2G Ronkonkoma, New York",
+                "global_code": "87G8QVVM+2G"
+            },
+            "rating": 0,
+            "reference": "ChIJsS9WwLY36IkRgjjqKUST8jQ",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 0,
+            "vicinity": "847 11th St, Ronkonkoma"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7638939,
+                    "lng": -73.29438809999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.76464082989272,
+                        "lng": -73.29304352010728
+                    },
+                    "southwest": {
+                        "lat": 40.76194117010728,
+                        "lng": -73.29574317989271
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Custom Earth Recycling",
+            "opening_hours": {
+                "open_now": false
+            },
+            "place_id": "ChIJPVkXAeYt6IkRdNhzTPrOhMc",
+            "plus_code": {
+                "compound_code": "QP74+H6 Bay Shore, New York",
+                "global_code": "87G8QP74+H6"
+            },
+            "rating": 4,
+            "reference": "ChIJPVkXAeYt6IkRdNhzTPrOhMc",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 2,
+            "vicinity": "45 S 4th St, Bay Shore"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7648655,
+                    "lng": -73.2883547
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.76626027989272,
+                        "lng": -73.28700367010728
+                    },
+                    "southwest": {
+                        "lat": 40.76356062010728,
+                        "lng": -73.28970332989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "3rd Street Recycling & Material",
+            "place_id": "ChIJcydUK-Ut6IkRB68Cudruk8I",
+            "plus_code": {
+                "compound_code": "QP76+WM Bay Shore, New York",
+                "global_code": "87G8QP76+WM"
+            },
+            "rating": 0,
+            "reference": "ChIJcydUK-Ut6IkRB68Cudruk8I",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 0,
+            "vicinity": "2 S 3rd St, Bay Shore"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7675709,
+                    "lng": -73.2894498
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.76879037989271,
+                        "lng": -73.28810387010728
+                    },
+                    "southwest": {
+                        "lat": 40.76609072010727,
+                        "lng": -73.29080352989271
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Try Recycling",
+            "place_id": "ChIJWbKSp-Qt6IkRG3CitbiPJg4",
+            "plus_code": {
+                "compound_code": "QP96+26 Bay Shore, New York",
+                "global_code": "87G8QP96+26"
+            },
+            "rating": 2.1,
+            "reference": "ChIJWbKSp-Qt6IkRG3CitbiPJg4",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 7,
+            "vicinity": "135 S 2nd St, Bay Shore"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.72738100000001,
+                    "lng": -73.347662
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.72865832989272,
+                        "lng": -73.34631072010728
+                    },
+                    "southwest": {
+                        "lat": 40.72595867010727,
+                        "lng": -73.34901037989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Island Wide Recycling",
+            "opening_hours": {
+                "open_now": false
+            },
+            "photos": [
+                {
+                    "height": 346,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/102175648795006612648\">Island Wide Recycling</a>"
+                    ],
+                    "photo_reference": "ATtYBwJVwUmcqx2LIC7FvP45WVkxBxRxxA1mToOHyXUvWghu564CkM215mG_zGAATFJiEl4ILuZiGIF4wL04hmuVzgurO2tg-nrOiNbNlziyJ71ErhQ49o40ErKq7DDDSBcZK5rFE9JtGB8aFyo1KxhwdHznUehm4pdFY-yBKbCiAcMNWRCV",
+                    "width": 346
+                }
+            ],
+            "place_id": "ChIJh5gdVJMs6IkRikzgWw23vMw",
+            "plus_code": {
+                "compound_code": "PMG2+XW West Babylon, New York",
+                "global_code": "87G8PMG2+XW"
+            },
+            "rating": 5,
+            "reference": "ChIJh5gdVJMs6IkRikzgWw23vMw",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 1,
+            "vicinity": "203 Throop St, West Babylon"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 41.04562,
+                    "lng": -73.52777759999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 41.04693467989272,
+                        "lng": -73.52656327010727
+                    },
+                    "southwest": {
+                        "lat": 41.04423502010728,
+                        "lng": -73.52926292989272
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Katrina Mygatt Recycling Center",
+            "opening_hours": {
+                "open_now": false
+            },
+            "photos": [
+                {
+                    "height": 3024,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/116444791393977813955\">Cody Heisinger</a>"
+                    ],
+                    "photo_reference": "ATtYBwJ3vOjTGd1YtN5qOHbLCAQjiX0XPFKQ9dYgctnu2rNP4CzJ_A3JstogOF8659-f5ous9bil_5JXNCARowfUEDWeqVxEPTTYlW541MbGPeKzafdJeEogSZF8D74vNFEsK9sObPOQJ7fXpXUzg4uhVTfD0wC6KeD9MY8TKHzJBlYsuTcH",
+                    "width": 4032
+                }
+            ],
+            "place_id": "ChIJG6tl4NihwokRNL-IyAInxU8",
+            "plus_code": {
+                "compound_code": "2FWC+6V Stamford, Connecticut",
+                "global_code": "87H82FWC+6V"
+            },
+            "rating": 4.4,
+            "reference": "ChIJG6tl4NihwokRNL-IyAInxU8",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 36,
+            "vicinity": "130 Magee Ave, Stamford"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.8413918,
+                    "lng": -73.4284952
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.84286337989273,
+                        "lng": -73.42720252010727
+                    },
+                    "southwest": {
+                        "lat": 40.84016372010728,
+                        "lng": -73.42990217989271
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Gershow Recycling Corporation",
+            "opening_hours": {
+                "open_now": false
+            },
+            "photos": [
+                {
+                    "height": 3006,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/108957992096804406429\">A Google User</a>"
+                    ],
+                    "photo_reference": "ATtYBwI9Zi1IUReaRssZxvSlknlsFf8UD_VzRrxeoNgVMS0VV24rv4F2cq6I91BeRnDKngLx_2nmTlNZcEEwZaoYC_S06hK-vvSV-lkHgGzk_fLttZp1WC70TH-cq1UqIN6MqprA7QBU0GU3tORkjZI-vr8jG6mGO0mpAoWpPXDkAbgHO3hP",
+                    "width": 5344
+                }
+            ],
+            "place_id": "ChIJLX00NlAo6IkRQg7hwASjVZI",
+            "plus_code": {
+                "compound_code": "RHRC+HJ Huntington Station, New York",
+                "global_code": "87G8RHRC+HJ"
+            },
+            "rating": 3.9,
+            "reference": "ChIJLX00NlAo6IkRQg7hwASjVZI",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 19,
+            "vicinity": "149 W 11th St #1544, Huntington Station"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.79134699999999,
+                    "lng": -73.13798679999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.79268537989272,
+                        "lng": -73.13677597010727
+                    },
+                    "southwest": {
+                        "lat": 40.78998572010728,
+                        "lng": -73.13947562989271
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Earthrite Textile Recycling",
+            "place_id": "ChIJqzL5rQE36IkR32Aw502I2oQ",
+            "plus_code": {
+                "compound_code": "QVR6+GR Ronkonkoma, New York",
+                "global_code": "87G8QVR6+GR"
+            },
+            "rating": 0,
+            "reference": "ChIJqzL5rQE36IkR32Aw502I2oQ",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 0,
+            "vicinity": "2073 5th Ave, Ronkonkoma"
+        },
+        {
+            "business_status": "OPERATIONAL",
+            "geometry": {
+                "location": {
+                    "lat": 40.7982233,
+                    "lng": -72.92369719999999
+                },
+                "viewport": {
+                    "northeast": {
+                        "lat": 40.80106609999999,
+                        "lng": -72.92250377010727
+                    },
+                    "southwest": {
+                        "lat": 40.79727569999999,
+                        "lng": -72.9252034298927
+                    }
+                }
+            },
+            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+            "name": "Green Stream Recycling",
+            "photos": [
+                {
+                    "height": 1932,
+                    "html_attributions": [
+                        "<a href=\"https://maps.google.com/maps/contrib/101629693105291851131\">George Agagnina</a>"
+                    ],
+                    "photo_reference": "ATtYBwKivCBGrCBMksaZQO9L0blwYptWcCmzbjoKxKyWXG3zPUKwuhulV1fmlYjTsmnsu97-hTCl-E4k7G8p6qvlHdcyf2Ae09UJrxF94zPkplUqMTdgMLvS-KrOcMlGa5N5m4fb0ejUauRfwYvOGuuGHBEIS5TG9oPz-2N6HFaK80GCWHbm",
+                    "width": 2576
+                }
+            ],
+            "place_id": "ChIJh1XN-3hF6IkRfZy-eY7ZfJk",
+            "plus_code": {
+                "compound_code": "Q3XG+7G Brookhaven, New York",
+                "global_code": "87G9Q3XG+7G"
+            },
+            "rating": 4,
+            "reference": "ChIJh1XN-3hF6IkRfZy-eY7ZfJk",
+            "scope": "GOOGLE",
+            "types": [
+                "point_of_interest",
+                "establishment"
+            ],
+            "user_ratings_total": 1,
+            "vicinity": "352 Horseblock Road, Brookhaven"
+        }
+    ],
+    "status": "OK"
+}
