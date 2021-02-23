@@ -13,6 +13,7 @@ import Footer from "../../components/footer";
 
 import testData from "./test.json";
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
+const proxy: string = "https://cors-anywhere.herokuapp.com/";
 
 interface Coords {
     lat: number,
@@ -62,9 +63,9 @@ const Map = ({center, children}: MapProps) => {
     const [places, setPlaces] = useState([]);
 
     const getLocations = async () => {
-        /*
+        
         const requestConfig: AxiosRequestConfig = {
-            url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
+            url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
             method: "get",
             params: {
                 key: mapsKey,
@@ -76,8 +77,8 @@ const Map = ({center, children}: MapProps) => {
 
         let locations = await axios(requestConfig);
         console.log(locations.data.results);
-        setPlaces(locations.data.results);
-        */
+        //setPlaces(locations.data.results);
+        
 
         //@ts-ignore
         setPlaces(testData.results);
