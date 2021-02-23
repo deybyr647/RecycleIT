@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GoogleMap from "google-map-react";
 import axios, { AxiosRequestConfig } from "axios";
 
@@ -21,7 +21,7 @@ interface Coords {
 };
 
 interface MapProps {
-    center: Coords
+    center: Coords,
     children?: React.ReactNode
 };   
 
@@ -42,7 +42,7 @@ const LandingMessage = () => {
             <hr/>
             <p>Enter a zip code or use your current location to get started searching...</p>
         </Alert>
-    )
+    );
 }
 
 const Marker = ({color}: MarkerProps) => (
@@ -51,7 +51,7 @@ const Marker = ({color}: MarkerProps) => (
         size={36}
         className={styles.marker}
     />
-)
+);
 
 const Map = ({center, children}: MapProps) => {
     const defaultCoords: Coords = {lat: 40.7128, lng: -74.0060};
@@ -60,75 +60,54 @@ const Map = ({center, children}: MapProps) => {
         streetViewControl: true
     };
 
-    const [places, setPlaces] = useState([]);
-
-    const getLocations = async () => {
-        
-        const requestConfig: AxiosRequestConfig = {
-            url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
-            method: "get",
-            params: {
-                key: mapsKey,
-                location: `${center.lat},${center.lng}`,
-                radius: 32187,
-                keyword: "recycling center"
-            }
-        }
-
-        let locations = await axios(requestConfig);
-        console.log(locations.data.results);
-        //setPlaces(locations.data.results);
-        
-
-        //@ts-ignore
-        setPlaces(testData.results);
-    }
+    let isNull = Object.values(center).every(obj => obj === null);
 
     return(
-        <>
-            {center.lat && center.lng ?
-                <div className={`${styles.map} shadow`}>
-                    <GoogleMap
-                        //@ts-ignore
-                        bootstrapURLKeys={{key: mapsKey}}
-                        defaultCenter={defaultCoords}
-                        center={center}
-                        defaultZoom={11}
-                        options={mapOptions}
-                        onTilesLoaded={getLocations}
-                    >
-                        <Marker
-                            //@ts-ignore
-                            lat={center.lat}
-                            lng={center.lng}
-                            color="red"
-                        />
-
-                        {places.map((el, index) => {
-                            //@ts-ignore
-                            let coords = el.geometry.location;
-                            //@ts-ignore
-                            return <Marker key={index} lat={coords.lat} lng={coords.lng} color="darkgreen"/>
-                        })}
-                        
-                    </GoogleMap>
-                </div>
-                :
-                <LandingMessage/>
-            }
-        </>
+        <div className={`${styles.map} shadow`}>
+            <GoogleMap
+                //@ts-ignore
+                bootstrapURLKeys={{key: mapsKey}}
+                defaultCenter={defaultCoords}
+                center={isNull ? defaultCoords : center}
+                defaultZoom={11}
+                options={mapOptions}
+            >
+                {children}   
+            </GoogleMap>
+        </div>        
     );
 }
 
 const MapPageContent = () => {
     const [zip, setZip] = useState("");
     const [userCoords, setUserCoords] = useState({lat: null, lng: null});
+    const [places, setPlaces] = useState([]);
 
     const changeHandler = (e: any): void => {
         e.preventDefault();
         console.log(zip);
         setZip(e.target.value);
     };
+
+    const getLocations = async () => {
+        const requestConfig: AxiosRequestConfig = {
+            url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
+            method: "get",
+            params: {
+                key: mapsKey,
+                location: `${userCoords.lat},${userCoords.lng}`,
+                radius: 32187,
+                keyword: "recycling center"
+            }
+        }
+
+        /*let locations = await axios(requestConfig);
+        console.log(locations.data.results);
+        setPlaces(locations.data.results);*/
+        
+        //@ts-ignore
+        setPlaces(testData.results);
+    }
 
     const getUserCoords = (e: any): void => {
         e.preventDefault();
@@ -151,6 +130,11 @@ const MapPageContent = () => {
         };
     };
 
+    useEffect(() => {
+        console.log("Data changed!");
+        getLocations();
+    }, [userCoords]);
+
     return(
         <Container fluid>
             <Row className="mb-2">
@@ -165,10 +149,22 @@ const MapPageContent = () => {
 
             <Row className="mt-2">
                 <Col>
+                    <LandingMessage/>
+
                     <Map
                         //@ts-ignore
                         center={userCoords}
-                    />
+                    >
+                        {/*@ts-ignore*/}
+                        <Marker lat={userCoords.lat} lng={userCoords.lng} color="red"/>
+
+                        {places.map((place, index) => {
+                            //@ts-ignore
+                            let placeCoords = place.geometry.location;
+                            //@ts-ignore
+                            return <Marker key={index} lat={placeCoords.lat} lng={placeCoords.lng} color="green"/>
+                        })}
+                    </Map>
                 </Col>
             </Row>
         </Container>
