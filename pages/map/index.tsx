@@ -62,15 +62,37 @@ const Map = ({center, children}: MapProps) => {
 
     let isNull = Object.values(center).every(obj => obj === null);
 
+    const drawBounds = (map: any, maps: any): void => {
+        const triangleCoords = [
+            { lat: 40.8057608, lng: -73.1650619 },
+            { lat: 40.7551549, lng: -73.229416 },
+            { lat: 40.7551549, lng: -73.229416 },
+            { lat: 40.7551549, lng: -73.229416 },
+        ];
+
+        const bermudaTriangle = new maps.Polygon({
+            paths: triangleCoords,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+        });
+
+        bermudaTriangle.setMap(map);
+    }
+
     return(
         <div className={`${styles.map} shadow`}>
             <GoogleMap
                 //@ts-ignore
-                bootstrapURLKeys={{key: mapsKey}}
+                bootstrapURLKeys={{key: mapsKey, libraries: ["geometry", "drawing"]}}
+                onGoogleApiLoaded={({map, maps}) => {drawBounds(map, maps)}}
                 defaultCenter={defaultCoords}
                 center={isNull ? defaultCoords : center}
                 defaultZoom={11}
                 options={mapOptions}
+                yesIWantToUseGoogleMapApiInternals
             >
                 {children}   
             </GoogleMap>
@@ -81,6 +103,7 @@ const Map = ({center, children}: MapProps) => {
 const MapPageContent = () => {
     const [zip, setZip] = useState("");
     const [userCoords, setUserCoords] = useState({lat: null, lng: null});
+    const [zipCoords, setZipCoords] = useState({lat: null, lng: null});
     const [places, setPlaces] = useState([]);
 
     const changeHandler = (e: any): void => {
@@ -89,8 +112,8 @@ const MapPageContent = () => {
         setZip(e.target.value);
     };
 
-    const getLocations = async () => {
-        const requestConfig: AxiosRequestConfig = {
+    const getPlaceCoordsWithUserCoords = async () => {
+        const placesRequestConfig: AxiosRequestConfig = {
             url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
             method: "get",
             params: {
@@ -101,12 +124,44 @@ const MapPageContent = () => {
             }
         }
 
-        /*let locations = await axios(requestConfig);
-        console.log(locations.data.results);
-        setPlaces(locations.data.results);*/
+        let placesRequest = await axios(placesRequestConfig);
+        setPlaces(placesRequest.data.results);
+    }
+
+    const getPlaceCoordsWithZip = async () => {
+        const geocodeRequestConfig: AxiosRequestConfig = {
+            url:`${proxy}https://maps.googleapis.com/maps/api/geocode/json`,
+            method: "get",
+            params: {
+                key: mapsKey,
+                address: zip
+            }
+        }
+
+        let geocodeRequest = await axios(geocodeRequestConfig);
+        let geocodedResult = geocodeRequest.data.results.geometry.location;
+
+        const placesRequestConfig: AxiosRequestConfig = {
+            url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
+            method: "get",
+            params: {
+                key: mapsKey,
+                location: `${geocodedResult.lat}, ${geocodedResult.lng}`,
+                radius: 32187,
+                keyword: "recycling center"
+            }
+        }
+
+        let placesRequest = await axios(placesRequestConfig);
+        setPlaces(placesRequest.data.results);
         
-        //@ts-ignore
-        setPlaces(testData.results);
+        setZipCoords((prev: any) => {
+            return {
+                ...prev,
+                lat: geocodedResult.lat,
+                lng: geocodedResult.lng
+            };
+        });
     }
 
     const getUserCoords = (e: any): void => {
@@ -131,9 +186,14 @@ const MapPageContent = () => {
     };
 
     useEffect(() => {
-        console.log("Data changed!");
-        getLocations();
+        console.log("Data changed with geolocation!");
+        getPlaceCoordsWithUserCoords();
     }, [userCoords]);
+
+    useEffect(() => {
+        console.log("Data changed with zip code!");
+        getPlaceCoordsWithZip();
+    }, [zipCoords]);
 
     return(
         <Container fluid>
@@ -141,8 +201,11 @@ const MapPageContent = () => {
                 <Col>
                     <Form className="d-flex flex-row justify-content-between" onSubmit={e => e.preventDefault()}>
                         <Form.Control required placeholder="Enter Zip Code..." value={zip} onChange={changeHandler}/>
-                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`}><BiSearchAlt/></Button>
-                        <Button variant="info" type="submit" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
+                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`} onClick={getPlaceCoordsWithZip}><BiSearchAlt/></Button>
+                        <Button variant="info" type="submit" className={styles.searchButton} onClick={e => {
+                            e.preventDefault();
+                            getPlaceCoordsWithZip();
+                        }}><BiCurrentLocation/></Button>
                     </Form>
                 </Col>
             </Row>
