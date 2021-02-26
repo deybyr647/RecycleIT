@@ -139,7 +139,7 @@ const MapPageContent = () => {
         }
 
         let geocodeRequest = await axios(geocodeRequestConfig);
-        let geocodedResult = geocodeRequest.data.results.geometry.location;
+        let geocodedResult = geocodeRequest.data.results[0].geometry.location;
 
         const placesRequestConfig: AxiosRequestConfig = {
             url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
@@ -201,11 +201,11 @@ const MapPageContent = () => {
                 <Col>
                     <Form className="d-flex flex-row justify-content-between" onSubmit={e => e.preventDefault()}>
                         <Form.Control required placeholder="Enter Zip Code..." value={zip} onChange={changeHandler}/>
-                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`} onClick={getPlaceCoordsWithZip}><BiSearchAlt/></Button>
-                        <Button variant="info" type="submit" className={styles.searchButton} onClick={e => {
+                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`} onClick={e => {
                             e.preventDefault();
                             getPlaceCoordsWithZip();
-                        }}><BiCurrentLocation/></Button>
+                        }}><BiSearchAlt/></Button>
+                        <Button variant="info" type="submit" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
                     </Form>
                 </Col>
             </Row>
