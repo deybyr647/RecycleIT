@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import GoogleMap from "google-map-react";
 import axios, { AxiosRequestConfig } from "axios";
 
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert, Jumbotron } from "react-bootstrap";
 import { BiCurrentLocation, BiSearchAlt } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import styles from "../../styles/map.module.css";
@@ -61,33 +61,13 @@ const Map = ({center, children}: MapProps) => {
     };
 
     let isNull = Object.values(center).every(obj => obj === null);
-
-    const drawBounds = (map: any, maps: any): void => {
-        const triangleCoords = [
-            { lat: 40.8057608, lng: -73.1650619 },
-            { lat: 40.7551549, lng: -73.229416 },
-            { lat: 40.7551549, lng: -73.229416 },
-            { lat: 40.7551549, lng: -73.229416 },
-        ];
-
-        const bermudaTriangle = new maps.Polygon({
-            paths: triangleCoords,
-            strokeColor: "#FF0000",
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
-        });
-
-        bermudaTriangle.setMap(map);
-    }
-
+    
     return(
         <div className={`${styles.map} shadow`}>
             <GoogleMap
                 //@ts-ignore
                 bootstrapURLKeys={{key: mapsKey, libraries: ["geometry", "drawing"]}}
-                onGoogleApiLoaded={({map, maps}) => {drawBounds(map, maps)}}
+                onGoogleApiLoaded={({map, maps}) => {console.log(map, maps)}}
                 defaultCenter={defaultCoords}
                 center={isNull ? defaultCoords : center}
                 defaultZoom={11}
@@ -103,14 +83,19 @@ const Map = ({center, children}: MapProps) => {
 const MapPageContent = () => {
     const [zip, setZip] = useState("");
     const [userCoords, setUserCoords] = useState({lat: null, lng: null});
-    const [zipCoords, setZipCoords] = useState({lat: null, lng: null});
     const [places, setPlaces] = useState([]);
+    const [zipStatus, setZipStatus] = useState(false)
 
     const changeHandler = (e: any): void => {
         e.preventDefault();
-        console.log(zip);
         setZip(e.target.value);
     };
+
+    const submitHandler = (e: any) => {
+        e.preventDefault();
+        getPlaceCoordsWithZip();
+        setZip("");
+    }
 
     const getPlaceCoordsWithUserCoords = async () => {
         const placesRequestConfig: AxiosRequestConfig = {
@@ -151,17 +136,19 @@ const MapPageContent = () => {
                 keyword: "recycling center"
             }
         }
-
-        let placesRequest = await axios(placesRequestConfig);
-        setPlaces(placesRequest.data.results);
         
-        setZipCoords((prev: any) => {
+        setZipStatus(true);
+
+        setUserCoords((prev: any) => {
             return {
                 ...prev,
                 lat: geocodedResult.lat,
                 lng: geocodedResult.lng
-            };
+            }
         });
+
+        let placesRequest = await axios(placesRequestConfig);
+        setPlaces(placesRequest.data.results);
     }
 
     const getUserCoords = (e: any): void => {
@@ -181,45 +168,42 @@ const MapPageContent = () => {
                         lng: userCoords.lng
                     };
                 });
+
+                setZipStatus(false);
             });
         };
     };
 
     useEffect(() => {
-        console.log("Data changed with geolocation!");
         getPlaceCoordsWithUserCoords();
     }, [userCoords]);
-
-    useEffect(() => {
-        console.log("Data changed with zip code!");
-        getPlaceCoordsWithZip();
-    }, [zipCoords]);
 
     return(
         <Container fluid>
             <Row className="mb-2">
                 <Col>
-                    <Form className="d-flex flex-row justify-content-between" onSubmit={e => e.preventDefault()}>
+                    <Form className="d-flex flex-row justify-content-between" onSubmit={submitHandler}>
                         <Form.Control required placeholder="Enter Zip Code..." value={zip} onChange={changeHandler}/>
-                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`} onClick={e => {
-                            e.preventDefault();
-                            getPlaceCoordsWithZip();
-                        }}><BiSearchAlt/></Button>
+                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`} onClick={submitHandler}><BiSearchAlt/></Button>
                         <Button variant="info" type="submit" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
                     </Form>
                 </Col>
             </Row>
 
             <Row className="mt-2">
-                <Col>
+                <Col md={12} lg={8} xl={8} className="mt-3">
                     <LandingMessage/>
 
                     <Map
                         //@ts-ignore
                         center={userCoords}
                     >
-                        {/*@ts-ignore*/}
-                        <Marker lat={userCoords.lat} lng={userCoords.lng} color="red"/>
+                        {userCoords.lat && userCoords.lng ?
+                            //@ts-ignore
+                            <Marker lat={userCoords.lat} lng={userCoords.lng} color={zipStatus ? "blue" : "red"}/>
+                            :
+                            null
+                        }
 
                         {places.map((place, index) => {
                             //@ts-ignore
@@ -228,6 +212,12 @@ const MapPageContent = () => {
                             return <Marker key={index} lat={placeCoords.lat} lng={placeCoords.lng} color="green"/>
                         })}
                     </Map>
+                </Col>
+
+                <Col className="mt-3">
+                    <Jumbotron className="h-100">
+                        <h1 className="text-center">Place List</h1>
+                    </Jumbotron>
                 </Col>
             </Row>
         </Container>
