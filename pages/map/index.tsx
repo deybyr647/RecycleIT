@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import GoogleMap from "google-map-react";
-import axios, { AxiosRequestConfig } from "axios";
 
 import { Container, Row, Col, Form, Button, Alert, Jumbotron } from "react-bootstrap";
 import { BiCurrentLocation, BiSearchAlt } from "react-icons/bi";
@@ -10,10 +9,9 @@ import styles from "../../styles/map.module.css";
 import MetaData from "../../components/metadata";
 import Navigation from "../../components/navbar";
 import Footer from "../../components/footer";
+import { getPlaceData, getPlaceDataWithZip } from '../../components/util';
 
-import testData from "./test.json";
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
-const proxy: string = "https://cors-anywhere.herokuapp.com/";
 
 interface Coords {
     lat: number,
@@ -67,7 +65,6 @@ const Map = ({center, children}: MapProps) => {
             <GoogleMap
                 //@ts-ignore
                 bootstrapURLKeys={{key: mapsKey, libraries: ["geometry", "drawing"]}}
-                onGoogleApiLoaded={({map, maps}) => {console.log(map, maps)}}
                 defaultCenter={defaultCoords}
                 center={isNull ? defaultCoords : center}
                 defaultZoom={11}
@@ -93,62 +90,20 @@ const MapPageContent = () => {
 
     const submitHandler = (e: any) => {
         e.preventDefault();
-        getPlaceCoordsWithZip();
-        setZip("");
-    }
-
-    const getPlaceCoordsWithUserCoords = async () => {
-        const placesRequestConfig: AxiosRequestConfig = {
-            url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
-            method: "get",
-            params: {
-                key: mapsKey,
-                location: `${userCoords.lat},${userCoords.lng}`,
-                radius: 32187,
-                keyword: "recycling center"
-            }
-        }
-
-        let placesRequest = await axios(placesRequestConfig);
-        setPlaces(placesRequest.data.results);
-    }
-
-    const getPlaceCoordsWithZip = async () => {
-        const geocodeRequestConfig: AxiosRequestConfig = {
-            url:`${proxy}https://maps.googleapis.com/maps/api/geocode/json`,
-            method: "get",
-            params: {
-                key: mapsKey,
-                address: zip
-            }
-        }
-
-        let geocodeRequest = await axios(geocodeRequestConfig);
-        let geocodedResult = geocodeRequest.data.results[0].geometry.location;
-
-        const placesRequestConfig: AxiosRequestConfig = {
-            url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
-            method: "get",
-            params: {
-                key: mapsKey,
-                location: `${geocodedResult.lat}, ${geocodedResult.lng}`,
-                radius: 32187,
-                keyword: "recycling center"
-            }
-        }
         
-        setZipStatus(true);
-
-        setUserCoords((prev: any) => {
-            return {
-                ...prev,
-                lat: geocodedResult.lat,
-                lng: geocodedResult.lng
-            }
-        });
-
-        let placesRequest = await axios(placesRequestConfig);
-        setPlaces(placesRequest.data.results);
+        (async () => {
+            let placeData = await getPlaceDataWithZip(zip); //@ts-ignore
+            setPlaces(placeData.data);
+            setUserCoords(prev => {
+                return {
+                    ...prev,                                //@ts-ignore
+                    lat: placeData.coords.lat,              //@ts-ignore
+                    lng: placeData.coords.lng
+                }
+            })
+            setZipStatus(true);
+            setZip("");
+        })();
     }
 
     const getUserCoords = (e: any): void => {
@@ -175,7 +130,10 @@ const MapPageContent = () => {
     };
 
     useEffect(() => {
-        getPlaceCoordsWithUserCoords();
+        (async () => {
+            let placeData = await getPlaceData(userCoords);
+            setPlaces(placeData);
+        })();
     }, [userCoords]);
 
     return(
