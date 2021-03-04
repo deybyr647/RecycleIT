@@ -17,7 +17,7 @@ const getPlaceData = async (coords: IgetPlaceData) => {
         params: {
             key: mapsKey,
             location: `${coords.lat},${coords.lng}`,
-            radius: 32187,
+            radius: 16094,
             keyword: "recycling center"
         }
     }
