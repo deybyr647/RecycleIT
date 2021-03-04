@@ -204,7 +204,7 @@ const MapPageContent = () => {
 
                 <Col className="mt-3">
                     <Jumbotron className={styles.cardContainer}>
-                        <h3 className="text-center mb-4">Reycling Centers</h3>
+                        <h3 className="text-center mb-4">Recycling Centers</h3>
                         {places.length !== 0 ?
                             (places.map((place, index) => {
                                 let dataObj = {     //@ts-ignore
