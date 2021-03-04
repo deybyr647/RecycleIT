@@ -9,6 +9,7 @@ import styles from "../../styles/map.module.css";
 import MetaData from "../../components/metadata";
 import Navigation from "../../components/navbar";
 import Footer from "../../components/footer";
+import PlaceCard from "../../components/placeCard";
 import { getPlaceData, getPlaceDataWithZip } from '../../components/util';
 
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
@@ -35,7 +36,6 @@ const LandingMessage = () => {
             <Alert.Heading>Welcome To The Map</Alert.Heading>
             <p>
                 Here you can see location and other information of recycling centers!
-                You can also see your saved recycling centers for convenience!
             </p>
             <hr/>
             <p>Enter a zip code or use your current location to get started searching...</p>
@@ -61,13 +61,13 @@ const Map = ({center, children}: MapProps) => {
     let isNull = Object.values(center).every(obj => obj === null);
     
     return(
-        <div className={`${styles.map} shadow`}>
+        <div className={`${styles.map} shadow rounded`}>
             <GoogleMap
                 //@ts-ignore
-                bootstrapURLKeys={{key: mapsKey, libraries: ["geometry", "drawing"]}}
+                bootstrapURLKeys={{key: mapsKey}}
                 defaultCenter={defaultCoords}
                 center={isNull ? defaultCoords : center}
-                defaultZoom={11}
+                defaultZoom={12}
                 options={mapOptions}
                 yesIWantToUseGoogleMapApiInternals
             >
@@ -79,14 +79,29 @@ const Map = ({center, children}: MapProps) => {
 
 const MapPageContent = () => {
     const [zip, setZip] = useState("");
+    const [isZip, setIsZip] = useState(false);
     const [userCoords, setUserCoords] = useState({lat: null, lng: null});
+    const [focusedMarker, setFocusedMarker] = useState({lat: null, lng: null});
+    const [isFocused, setIsFocused] = useState(false);
     const [places, setPlaces] = useState([]);
-    const [zipStatus, setZipStatus] = useState(false)
-
+    
     const changeHandler = (e: any): void => {
         e.preventDefault();
         setZip(e.target.value);
     };
+
+    const focusHandler = (e: any, coords: Coords) => {
+        e.preventDefault();
+        setFocusedMarker((prev: any) => {
+            return {
+                ...prev,
+                lat: coords.lat,
+                lng: coords.lng
+            }
+        });
+
+        setIsFocused(true);
+    }
 
     const submitHandler = (e: any) => {
         e.preventDefault();
@@ -101,7 +116,8 @@ const MapPageContent = () => {
                     lng: placeData.coords.lng
                 }
             })
-            setZipStatus(true);
+            setIsZip(true);
+            setIsFocused(false);
             setZip("");
         })();
     }
@@ -124,7 +140,8 @@ const MapPageContent = () => {
                     };
                 });
 
-                setZipStatus(false);
+                setIsZip(false);
+                setIsFocused(false);
             });
         };
     };
@@ -138,43 +155,71 @@ const MapPageContent = () => {
 
     return(
         <Container fluid>
-            <Row className="mb-2">
+            <Row className="mb-2 d-flex flex-column">
+                <Col>
+                    <LandingMessage/>
+                </Col>
+
                 <Col>
                     <Form className="d-flex flex-row justify-content-between" onSubmit={submitHandler}>
                         <Form.Control required placeholder="Enter Zip Code..." value={zip} onChange={changeHandler}/>
-                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`} onClick={submitHandler}><BiSearchAlt/></Button>
-                        <Button variant="info" type="submit" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
+                        <Button type="submit" className={`${styles.searchButton} mx-2`} onClick={submitHandler}><BiSearchAlt/></Button>
+                        <Button type="submit" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
                     </Form>
                 </Col>
             </Row>
 
             <Row className="mt-2">
                 <Col md={12} lg={8} xl={8} className="mt-3">
-                    <LandingMessage/>
-
                     <Map
                         //@ts-ignore
-                        center={userCoords}
+                        center={isFocused ? focusedMarker : userCoords}
                     >
                         {userCoords.lat && userCoords.lng ?
                             //@ts-ignore
-                            <Marker lat={userCoords.lat} lng={userCoords.lng} color={zipStatus ? "blue" : "red"}/>
+                            <Marker lat={userCoords.lat} lng={userCoords.lng} color={isZip ? "blue" : "red"}/>
                             :
                             null
                         }
 
-                        {places.map((place, index) => {
+                        {places.length !== 0 ?
+                            (places.map((place, index) => {
+                                //@ts-ignore
+                                let placeCoords = place.geometry.location;
+                                //@ts-ignore
+                                return <Marker key={index} lat={placeCoords.lat} lng={placeCoords.lng} color="green"/>
+                            }))
+                            :
+                            null
+                        }
+
+                        {focusedMarker.lat && focusedMarker.lng ?
                             //@ts-ignore
-                            let placeCoords = place.geometry.location;
-                            //@ts-ignore
-                            return <Marker key={index} lat={placeCoords.lat} lng={placeCoords.lng} color="green"/>
-                        })}
+                            <Marker lat={focusedMarker.lat} lng={focusedMarker.lng} color="purple"/>
+                            :
+                            null
+                        }
                     </Map>
                 </Col>
 
                 <Col className="mt-3">
-                    <Jumbotron className="h-100">
-                        <h1 className="text-center">Place List</h1>
+                    <Jumbotron className={styles.cardContainer}>
+                        <h3 className="text-center mb-4">Reycling Centers</h3>
+                        {places.length !== 0 ?
+                            (places.map((place, index) => {
+                                let dataObj = {     //@ts-ignore
+                                    address: place.vicinity,    //@ts-ignore
+                                    id: place.place_id,     //@ts-ignore
+                                    location: place.geometry.location,      //@ts-ignore
+                                    placeName: place.name,      //@ts-ignore
+                                    status: place.business_status,
+                                }
+
+                                return <PlaceCard data={dataObj} onToggle={focusHandler} key={index}/>;
+                            }))
+                            :
+                            null
+                        }
                     </Jumbotron>
                 </Col>
             </Row>
