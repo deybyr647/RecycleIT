@@ -45,7 +45,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
         return {
             props: {
-                data: placeDetails
+                data: placeDetails,
+                error: null
             }
         }
     } catch(err){
@@ -53,7 +54,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
         return {
             props: {
-                error: "Error!"
+                data: null,
+                error: err.toString()
             }
         }
     }

@@ -69,19 +69,11 @@ const getPlaceDetails = async (id: placeid) => {
 
     try {
         const placeDetailsReq = await axios(placeDetailsReqConfig);
-        const data = await placeDetailsReq.data;
+        const data = await placeDetailsReq.data.result;
 
-        return {
-            status: data.result.business_status,
-            address: data.result.formatted_address,
-            phoneNumber: data.result.formatted_phone_number,
-            coords: data.result.geometry.location,
-            name: data.result.name,
-            isOpen: data.result.opening_hours.open_now,
-            schedule: data.result.opening_hours.weekday_text,
-            url: data.result.url,
-            website: data.result.website
-        }
+        const details = {...data}
+
+        return details;
     } catch(err) {
         if(err) console.error(err);
         return null;
