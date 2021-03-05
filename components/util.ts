@@ -61,7 +61,7 @@ const getPlaceDetails = async (id: placeid) => {
         method: "get",
         params: {
             key: mapsKey,
-            place_id: id?.toString(),
+            place_id: id,
             language: "en",
             fields: "name,photo,url,geometry,formatted_phone_number,opening_hours,website,business_status,formatted_address"
         }

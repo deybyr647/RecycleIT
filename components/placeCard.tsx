@@ -26,7 +26,6 @@ const PlaceCard = ({onToggle, data}: PlaceCardProps) => {
             <ListGroup className="list-group-flush">
                 <ListGroup.Item>Status: {data.status}</ListGroup.Item>
                 <ListGroup.Item>Address: {data.address}</ListGroup.Item>
-                <ListGroup.Item>Id: {data.id}</ListGroup.Item>
             </ListGroup>
 
             <Card.Body className="d-flex flex-row justify-content-around">
