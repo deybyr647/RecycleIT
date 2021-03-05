@@ -1,8 +1,11 @@
+import Link from 'next/link';
+
 import { Card, ListGroup, Button } from 'react-bootstrap';
 
 interface PlaceCardProps{
     data: {
         address: string,
+        id: string,
         location: {
             lat: number,
             lng: number
@@ -23,10 +26,11 @@ const PlaceCard = ({onToggle, data}: PlaceCardProps) => {
             <ListGroup className="list-group-flush">
                 <ListGroup.Item>Status: {data.status}</ListGroup.Item>
                 <ListGroup.Item>Address: {data.address}</ListGroup.Item>
+                <ListGroup.Item>Id: {data.id}</ListGroup.Item>
             </ListGroup>
 
             <Card.Body className="d-flex flex-row justify-content-around">
-                <Button variant="info" className="mr-3">More Information</Button>
+                <Link href={`/map/place/${data.id}`}>More Information</Link>
                 <Button onClick={(e) => onToggle(e, data.location)} variant="info" className="ml-3">See on Map</Button>
             </Card.Body>
         </Card>

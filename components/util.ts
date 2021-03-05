@@ -9,6 +9,7 @@ interface IgetPlaceData {
 }
 
 type zipCode = string;
+type placeid = string | string[] | undefined;
 
 const getPlaceData = async (coords: IgetPlaceData) => {
     const dataReqConfig: AxiosRequestConfig = {
@@ -23,8 +24,9 @@ const getPlaceData = async (coords: IgetPlaceData) => {
     }
 
     try {
-        let req = await axios(dataReqConfig);
-        let data = await req.data;
+        const req = await axios(dataReqConfig);
+        const data = await req.data;
+
         return data.results;
     } catch(err) {
         if(err) console.error(err);
@@ -42,10 +44,10 @@ const getPlaceDataWithZip = async (zip: zipCode) => {
     }
 
     try {
-        let geocodeReq = await axios(geocodeReqConfig);
-        let coords = await geocodeReq.data.results[0].geometry.location;
+        const geocodeReq = await axios(geocodeReqConfig);
+        const coords = await geocodeReq.data.results[0].geometry.location;
+        const data = await getPlaceData(coords);
 
-        let data = await getPlaceData(coords);
         return { data, coords };
     } catch(err) {
         if(err) console.error(err);
@@ -53,4 +55,37 @@ const getPlaceDataWithZip = async (zip: zipCode) => {
 
 }
 
-export { getPlaceData, getPlaceDataWithZip };
+const getPlaceDetails = async (id: placeid) => {
+    const placeDetailsReqConfig: AxiosRequestConfig = {
+        url: `https://maps.googleapis.com/maps/api/place/details/json`,
+        method: "get",
+        params: {
+            key: mapsKey,
+            place_id: id?.toString(),
+            language: "en",
+            fields: "name,photo,url,geometry,formatted_phone_number,opening_hours,website,business_status,formatted_address"
+        }
+    }
+
+    try {
+        const placeDetailsReq = await axios(placeDetailsReqConfig);
+        const data = await placeDetailsReq.data;
+
+        return {
+            status: data.result.business_status,
+            address: data.result.formatted_address,
+            phoneNumber: data.result.formatted_phone_number,
+            coords: data.result.geometry.location,
+            name: data.result.name,
+            isOpen: data.result.opening_hours.open_now,
+            schedule: data.result.opening_hours.weekday_text,
+            url: data.result.url,
+            website: data.result.website
+        }
+    } catch(err) {
+        if(err) console.error(err);
+        return null;
+    }
+}
+
+export { getPlaceData, getPlaceDataWithZip, getPlaceDetails };
