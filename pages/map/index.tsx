@@ -1,7 +1,7 @@
-import { useState } from "react";
-import GoogleMapReact from "google-map-react";
+import { useEffect, useState } from "react";
+import GoogleMap from "google-map-react";
 
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert, Jumbotron } from "react-bootstrap";
 import { BiCurrentLocation, BiSearchAlt } from "react-icons/bi";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import styles from "../../styles/map.module.css";
@@ -9,6 +9,7 @@ import styles from "../../styles/map.module.css";
 import MetaData from "../../components/metadata";
 import Navigation from "../../components/navbar";
 import Footer from "../../components/footer";
+import { getPlaceData, getPlaceDataWithZip } from '../../components/util';
 
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
 
@@ -17,8 +18,8 @@ interface Coords {
     lng: number
 };
 
-interface GMapProps {
-    center: Coords
+interface MapProps {
+    center: Coords,
     children?: React.ReactNode
 };   
 
@@ -39,7 +40,7 @@ const LandingMessage = () => {
             <hr/>
             <p>Enter a zip code or use your current location to get started searching...</p>
         </Alert>
-    )
+    );
 }
 
 const Marker = ({color}: MarkerProps) => (
@@ -48,51 +49,62 @@ const Marker = ({color}: MarkerProps) => (
         size={36}
         className={styles.marker}
     />
-)
+);
 
-const GMap = ({center, children}: GMapProps) => {
+const Map = ({center, children}: MapProps) => {
     const defaultCoords: Coords = {lat: 40.7128, lng: -74.0060};
     const mapOptions = {
         mapTypeControl: true,
         streetViewControl: true
     };
 
+    let isNull = Object.values(center).every(obj => obj === null);
+    
     return(
-        <>
-            {center.lat && center.lng ?
-                <div className={`${styles.map} shadow`}>
-                    <GoogleMapReact
-                        //@ts-ignore
-                        bootstrapURLKeys={{key: mapsKey}}
-                        defaultCenter={defaultCoords}
-                        center={center}
-                        defaultZoom={11}
-                        options={mapOptions}
-                    >
-                        <Marker
-                            //@ts-ignore
-                            lat={center.lat}
-                            lng={center.lng}
-                            color="blue"
-                        />
-                    </GoogleMapReact>
-                </div>
-                :
-                <LandingMessage/>
-            }
-        </>
+        <div className={`${styles.map} shadow`}>
+            <GoogleMap
+                //@ts-ignore
+                bootstrapURLKeys={{key: mapsKey, libraries: ["geometry", "drawing"]}}
+                defaultCenter={defaultCoords}
+                center={isNull ? defaultCoords : center}
+                defaultZoom={11}
+                options={mapOptions}
+                yesIWantToUseGoogleMapApiInternals
+            >
+                {children}   
+            </GoogleMap>
+        </div>        
     );
 }
 
 const MapPageContent = () => {
     const [zip, setZip] = useState("");
     const [userCoords, setUserCoords] = useState({lat: null, lng: null});
+    const [places, setPlaces] = useState([]);
+    const [zipStatus, setZipStatus] = useState(false)
 
     const changeHandler = (e: any): void => {
         e.preventDefault();
-        console.log(zip);
         setZip(e.target.value);
     };
+
+    const submitHandler = (e: any) => {
+        e.preventDefault();
+        
+        (async () => {
+            let placeData = await getPlaceDataWithZip(zip); //@ts-ignore
+            setPlaces(placeData.data);
+            setUserCoords(prev => {
+                return {
+                    ...prev,                                //@ts-ignore
+                    lat: placeData.coords.lat,              //@ts-ignore
+                    lng: placeData.coords.lng
+                }
+            })
+            setZipStatus(true);
+            setZip("");
+        })();
+    }
 
     const getUserCoords = (e: any): void => {
         e.preventDefault();
@@ -111,28 +123,59 @@ const MapPageContent = () => {
                         lng: userCoords.lng
                     };
                 });
+
+                setZipStatus(false);
             });
         };
     };
+
+    useEffect(() => {
+        (async () => {
+            let placeData = await getPlaceData(userCoords);
+            setPlaces(placeData);
+        })();
+    }, [userCoords]);
 
     return(
         <Container fluid>
             <Row className="mb-2">
                 <Col>
-                    <Form className="d-flex flex-row justify-content-between" onSubmit={e => e.preventDefault()}>
+                    <Form className="d-flex flex-row justify-content-between" onSubmit={submitHandler}>
                         <Form.Control required placeholder="Enter Zip Code..." value={zip} onChange={changeHandler}/>
-                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`}><BiSearchAlt/></Button>
+                        <Button variant="info" type="submit" className={`${styles.searchButton} mx-2`} onClick={submitHandler}><BiSearchAlt/></Button>
                         <Button variant="info" type="submit" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
                     </Form>
                 </Col>
             </Row>
 
             <Row className="mt-2">
-                <Col>
-                    <GMap
+                <Col md={12} lg={8} xl={8} className="mt-3">
+                    <LandingMessage/>
+
+                    <Map
                         //@ts-ignore
                         center={userCoords}
-                    />
+                    >
+                        {userCoords.lat && userCoords.lng ?
+                            //@ts-ignore
+                            <Marker lat={userCoords.lat} lng={userCoords.lng} color={zipStatus ? "blue" : "red"}/>
+                            :
+                            null
+                        }
+
+                        {places.map((place, index) => {
+                            //@ts-ignore
+                            let placeCoords = place.geometry.location;
+                            //@ts-ignore
+                            return <Marker key={index} lat={placeCoords.lat} lng={placeCoords.lng} color="green"/>
+                        })}
+                    </Map>
+                </Col>
+
+                <Col className="mt-3">
+                    <Jumbotron className="h-100">
+                        <h1 className="text-center">Place List</h1>
+                    </Jumbotron>
                 </Col>
             </Row>
         </Container>
