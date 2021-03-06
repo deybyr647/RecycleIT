@@ -42,7 +42,7 @@ const HomeContent = () => {
             
             <Card className="mt-3">
               <Card.Header className="justify-content-center d-flex">
-                <Button className={styles.buttonTrigger}>What Is Recycling?</Button>
+                <Button variant="info" className={styles.buttonTrigger}>What Is Recycling?</Button>
               </Card.Header>
                 <Card.Img src="https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1161&q=80"/>
                 <Card.Body>
@@ -121,7 +121,7 @@ const HomeContent = () => {
             <h3 className="text-center">Ways To Contribute</h3>
               <Card className="mt-3">
                 <Card.Header className="justify-content-center d-flex">
-                  <Button className={styles.buttonTrigger}>Recycling Guidelines</Button>
+                  <Button variant="info" className={styles.buttonTrigger}>Recycling Guidelines</Button>
                 </Card.Header>
                   <Card.Img variant="top" src="https://pixfeeds.com/images/save-nature/1280-508877770-different-colored-recycle-waste-bins.jpg"/>
                   <Card.Body>
