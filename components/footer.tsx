@@ -6,7 +6,7 @@ interface FooterProps {
 }
 
 const Footer = ({style}: FooterProps) => {
-    return(
+    return (
         <Nav 
             className={`${style || 'sticky-bottom'} justify-content-center mt-3 ${styles.footerNav}`}
         >
