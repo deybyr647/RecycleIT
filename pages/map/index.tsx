@@ -8,11 +8,11 @@ import MetaData from "../../components/Metadata";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 
-import { Marker, Map, Coords} from '../../components/map/Map';
-import Message from '../../components/map/Message';
+import { Marker, Map, Coords} from "../../components/map/Map";
+import Message from "../../components/map/Message";
 import PlaceCard from "../../components/map/PlaceCard";
 
-import { getPlaceData, getPlaceDataWithZip } from '../../components/api';
+import { getPlaceData, getPlaceDataWithZip } from "../../components/api";
 
 const MapPageContent = () => {
     const [zip, setZip] = useState("");
@@ -152,7 +152,7 @@ const MapPageContent = () => {
                                 //@ts-ignore
                                 let placeCoords = place.geometry.location;
                                 
-                                return(
+                                return (
                                     <Marker 
                                         key={index} //@ts-ignore
                                         lat={placeCoords.lat}
@@ -203,7 +203,7 @@ const MapPageContent = () => {
                                     status: place.business_status,
                                 }
 
-                                return(
+                                return (
                                     <PlaceCard
                                         data={dataObj}
                                         onToggle={focusHandler}
@@ -222,7 +222,7 @@ const MapPageContent = () => {
 }
 
 const MapPage = () => {
-    return(
+    return (
         <>
             <MetaData title="RecycleIT Map"/>
             <Navigation/>

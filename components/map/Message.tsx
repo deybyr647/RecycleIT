@@ -11,7 +11,7 @@ interface MessageProps {
 const Message = ({heading, children}: MessageProps) => {
     const [alert, setAlert] = useState(true);
 
-    return(
+    return (
         <Alert show={alert} dismissible onClose={() => setAlert(false)} className={styles.message}>
             <Alert.Heading>{heading}</Alert.Heading>
             {children}

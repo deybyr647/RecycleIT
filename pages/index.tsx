@@ -20,7 +20,7 @@ const ContextAwareToggle = ({children, eventKey, onToggle}: ContextAwareTogglePr
   const decoratedOnClick = useAccordionToggle(eventKey, () => onToggle && onToggle(eventKey));
   const isCurrentEventKey: boolean = currentEventKey === eventKey;
 
-  return(
+  return (
     <Button
       variant={isCurrentEventKey ? "info" : ""}
       onClick={decoratedOnClick}
@@ -32,7 +32,7 @@ const ContextAwareToggle = ({children, eventKey, onToggle}: ContextAwareTogglePr
 };
 
 const HomeContent = () => {
-  return(
+  return (
     <Container fluid>
       <Row className="mt-1">
         <Col>
@@ -133,7 +133,7 @@ const HomeContent = () => {
 
 
 const Home = () => {
-  return(
+  return (
     <>
       <MetaData title="ReycleIT Home"/>
       <Navigation/>

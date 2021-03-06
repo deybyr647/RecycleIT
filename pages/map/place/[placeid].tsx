@@ -1,25 +1,107 @@
-import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
-import { Container, Row, Col } from 'react-bootstrap';
+import { GetServerSideProps } from "next";
 
-import Metadata from '../../../components/Metadata';
-import Navigation from '../../../components/Navigation';
-import Footer from '../../../components/Footer';
+import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 
-import { getPlaceDetails } from '../../../components/api';
+import styles from "../../../styles/map.module.css";
 
-const Place = ({data}: any) => {
-    console.log(data);
-    const router = useRouter();
+import Metadata from "../../../components/Metadata";
+import Navigation from "../../../components/Navigation";
+import Footer from "../../../components/Footer";
 
-    const { placeid } = router.query;
+import { Map, Marker, Coords } from "../../../components/map/Map";
+import { getPlaceDetails } from "../../../components/api";
+
+const PlaceDetailsCard = ({data}: any) => {
+    return (
+        <Card 
+            style={{height: "80vh"}} 
+            className={`${styles.placeDetails} d-flex flex-column justify-content-between text-center`}
+        >
+            <Card.Body className="d-flex justify-content-center align-items-center">
+                <Card.Title>{data.name}</Card.Title>
+            </Card.Body>
+            
+            <ListGroup className={`${styles.placeDetails} list-group-flush p-3`}>
+
+                <ListGroup.Item className={styles.placeDetails}>
+                    Schedule: <br/> <br/>
+                    {   
+                        data.opening_hours ?
+                        (data.opening_hours.weekday_text.map((el: any, index: any) => (
+                            <Card.Text key={index}>{el}</Card.Text>
+                        )))
+                        :
+                        "Unknown"
+                    }
+                </ListGroup.Item>
+
+                <ListGroup.Item className={styles.placeDetails}>
+                    Address:<br/>
+                    {data.formatted_address}
+                </ListGroup.Item>
+
+                <ListGroup.Item className={styles.placeDetails}>
+                    Phone Number:&nbsp;
+                    <Card.Link 
+                        href={`tel:${data.formatted_phone_number}`}
+                    >
+                        {data.formatted_phone_number ?? "Phone Number Unavailable"}
+                    </Card.Link>
+                </ListGroup.Item>
+
+                <ListGroup.Item className={styles.placeDetails}>
+                    Status: {data.business_status}
+                </ListGroup.Item>
+
+                <ListGroup.Item className={styles.placeDetails}>
+                    <Card.Link 
+                        href={data.website ?? "#"} 
+                        className={`btn btn-info ${styles.searchButton}`}
+                    >
+                        {data.website ? 
+                            "Visit Website"
+                            :
+                            "No Website Available"
+                        }
+                    </Card.Link>
+
+                    <Card.Link 
+                        href={data.url} 
+                        className={`btn btn-info ${styles.searchButton}`}
+                    >
+                        See in Google Maps
+                    </Card.Link>
+                </ListGroup.Item>
+
+            </ListGroup>
+        </Card>
+    )
+}
+
+const PlacePageContent = ({data, err}: any) => {
+    const centerCoords: Coords = {
+        lat: data.geometry.location.lat,
+        lng: data.geometry.location.lng
+    }
 
     return(
-        <Container>
+        <Container fluid>
             <Row>
+                <Col md={12} lg={7} xl={7}>
+                    <Map 
+                        center={centerCoords}
+                        zoom={18}
+                    >
+                        <Marker
+                            color="red" /* @ts-ignore */
+                            lat={centerCoords.lat}
+                            lng={centerCoords.lng}
+                        />
+                    </Map>
+                </Col>
+
                 <Col>
-                    <h1 className="text-center">Place ID: {placeid}</h1>
-                    <pre>{JSON.stringify(data, undefined, 2)}</pre>
+                    <PlaceDetailsCard data={data}/>
                 </Col>
             </Row>
         </Container>
@@ -27,12 +109,12 @@ const Place = ({data}: any) => {
 }
 
 const PlacePage = ({data}: any) => {
-    return(
+    return (
         <>
             <Metadata title="Place Info"/>
             <Navigation/>
-            <Place data={data}/>
-            <Footer/>
+            <PlacePageContent data={data}/>
+            <Footer style="fixed-bottom"/>
         </>
     )
 }
@@ -49,7 +131,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 error: null
             }
         }
-    } catch(err){
+    } catch(err) {
         if(err) console.error(err);
 
         return {

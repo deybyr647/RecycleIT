@@ -1,5 +1,5 @@
-import GoogleMap from 'google-map-react';
-import styles from '../../styles/map.module.css';
+import GoogleMap from "google-map-react";
+import styles from "../../styles/map.module.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
@@ -11,7 +11,8 @@ export interface Coords {
 
 interface MapProps {
     center: Coords,
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    zoom?: number
 };   
 
 interface MarkerProps {
@@ -26,7 +27,7 @@ const Marker = ({color}: MarkerProps) => (
     />
 );
 
-const Map = ({center, children}: MapProps) => {
+const Map = ({center, children, zoom}: MapProps) => {
     const defaultCoords: Coords = {lat: 40.7128, lng: -74.0060};
     const mapOptions = {
         mapTypeControl: true,
@@ -35,7 +36,7 @@ const Map = ({center, children}: MapProps) => {
 
     let isNull = Object.values(center).every(obj => obj === null);
     
-    return(
+    return (
         <div className={`${styles.map} shadow rounded`}>
             <GoogleMap
                 //@ts-ignore
@@ -43,6 +44,7 @@ const Map = ({center, children}: MapProps) => {
                 defaultCenter={defaultCoords}
                 center={isNull ? defaultCoords : center}
                 defaultZoom={12}
+                zoom={zoom ?? 12}
                 options={mapOptions}
                 yesIWantToUseGoogleMapApiInternals
             >

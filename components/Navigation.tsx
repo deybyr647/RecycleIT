@@ -5,7 +5,7 @@ import { FaRecycle } from "react-icons/fa";
 import styles from "../styles/etc.module.css";
 
 const Navigation = () => {
-    return(
+    return (
         <Navbar variant="dark" expand="md" className={`mb-3 ${styles.footerNav} sticky-top`}>
             <Navbar.Brand className={styles.anchors}><FaRecycle className={styles.faRecycle}/> <Link href="/">RecycleIT</Link></Navbar.Brand>
             <Navbar.Toggle aria-controls="nav"/>
