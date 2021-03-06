@@ -12,7 +12,12 @@
     height: 80vh;
 }
 
-.cardContainer{
+.cardContainer {
+    background-color: #C7F9CC;
     overflow-y: scroll;
     height: 80vh;
+}
+
+.message {
+    background-color: #57CC99;
 }

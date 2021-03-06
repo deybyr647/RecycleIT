@@ -28,17 +28,18 @@ interface MarkerProps {
     color: string
 }
 
-const LandingMessage = () => {
+interface MessageProps {
+    heading: string,
+    children: React.ReactNode
+}
+
+const Message = ({heading, children}: MessageProps) => {
     const [alert, setAlert] = useState(true);
 
     return(
-        <Alert variant="info" show={alert} dismissible onClose={() => setAlert(false)}>
-            <Alert.Heading>Welcome To The Map</Alert.Heading>
-            <p>
-                Here you can see location and other information of recycling centers!
-            </p>
-            <hr/>
-            <p>Enter a zip code or use your current location to get started searching...</p>
+        <Alert show={alert} dismissible onClose={() => setAlert(false)} className={styles.message}>
+            <Alert.Heading>{heading}</Alert.Heading>
+            {children}
         </Alert>
     );
 }
@@ -157,14 +158,10 @@ const MapPageContent = () => {
         <Container fluid>
             <Row className="mb-2 d-flex flex-column">
                 <Col>
-                    <LandingMessage/>
-                </Col>
-
-                <Col>
                     <Form className="d-flex flex-row justify-content-between" onSubmit={submitHandler}>
                         <Form.Control required placeholder="Enter Zip Code..." value={zip} onChange={changeHandler}/>
-                        <Button type="submit" className={`${styles.searchButton} mx-2`} onClick={submitHandler}><BiSearchAlt/></Button>
-                        <Button type="submit" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
+                        <Button variant="info" className={`${styles.searchButton} mx-2`} onClick={submitHandler}><BiSearchAlt/></Button>
+                        <Button variant="info" className={styles.searchButton} onClick={getUserCoords}><BiCurrentLocation/></Button>
                     </Form>
                 </Col>
             </Row>
@@ -203,8 +200,13 @@ const MapPageContent = () => {
                 </Col>
 
                 <Col className="mt-3">
-                    <Jumbotron className={styles.cardContainer}>
-                        <h3 className="text-center mb-4">Recycling Centers</h3>
+                    <Jumbotron className={`${styles.cardContainer} shadow`}>
+                        <Message heading="Recycling Centers">
+                            <p>Here you will see a list of nearby recycling centers shown on the map</p>
+                            <hr/>
+                            <p>Enter a zip code or use your location to get started!</p>
+                        </Message>
+
                         {places.length !== 0 ?
                             (places.map((place, index) => {
                                 let dataObj = {     //@ts-ignore
