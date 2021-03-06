@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import { Container, Row, Col, Jumbotron, Image, Carousel, Accordion, Card, Button, AccordionContext, useAccordionToggle } from "react-bootstrap";
 import { BiRecycle } from "react-icons/bi";
+
 import styles from "../styles/index.module.css";
 import etcStyles from "../styles/etc.module.css";
 
@@ -41,7 +42,7 @@ const HomeContent = () => {
             
             <Card className="mt-3">
               <Card.Header className="justify-content-center d-flex">
-                <ContextAwareToggle eventKey="0">What Is Recycling?</ContextAwareToggle>
+                <Button variant="info" className={styles.buttonTrigger}>What Is Recycling?</Button>
               </Card.Header>
                 <Card.Img src="https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1161&q=80"/>
                 <Card.Body>
@@ -51,11 +52,10 @@ const HomeContent = () => {
                 </Card.Body>
             </Card>
             
-
             <Accordion className="mt-3">
               <Card>
                 <Card.Header className="justify-content-center d-flex">
-                  <ContextAwareToggle eventKey="0">What Is Recycling?</ContextAwareToggle>
+                  <ContextAwareToggle eventKey="0">More Info</ContextAwareToggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                   <>
@@ -73,22 +73,46 @@ const HomeContent = () => {
         </Col>
 
         <Col md={12} lg={4} xl={6} className="mb-4 order-first order-lg-0">
-          <Row>
-            <Card className="shadow border-0 h-100">
-              <Card.Img
-                src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
-                className=""
-                alt="Recycling Bin"
-              />
+          <Row className="justify-content-center d-flex flex-column">
+            <Col>
+              <Card className="shadow border-0 w-100">
+                <Card.Img
+                  src="https://images.unsplash.com/photo-1604187351574-c75ca79f5807?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" 
+                  className="rounded"
+                  alt="Recycling Bin"
+                />
 
-              <Card.ImgOverlay className={`d-flex align-items-end ${styles.homeOverlay}`}>
-                <Card.Body className="text-white">
-                    <Card.Title>RecycleIT</Card.Title>
-                    <Card.Text>A new, simple way to recycling</Card.Text>
-                </Card.Body>
-                <BiRecycle size={36} className={etcStyles.faRecycle} style={{color: "white"}}/>
-              </Card.ImgOverlay>
-            </Card>
+                <Card.ImgOverlay className={`rounded d-flex align-items-end ${styles.homeOverlay}`}>
+                  <Card.Body className="text-white">
+                      <Card.Title>RecycleIT</Card.Title>
+                      <Card.Text>Making Recycling Easy</Card.Text>
+                  </Card.Body>
+                  <BiRecycle size={36} className={etcStyles.faRecycle} style={{color: "white"}}/>
+                </Card.ImgOverlay>
+              </Card>
+            </Col>
+
+            <Col className="mt-3">
+              <Carousel>
+                <Carousel.Item>
+                  <Image rounded src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" alt="First Slide" className="w-100"/>
+                  <Carousel.Caption>
+                  </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                  <Image rounded src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" alt="First Slide" className="w-100"/>
+                  <Carousel.Caption>
+                  </Carousel.Caption>
+                </Carousel.Item>
+
+                <Carousel.Item>
+                  <Image rounded src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" alt="First Slide" className="w-100"/>
+                  <Carousel.Caption>
+                  </Carousel.Caption>
+                </Carousel.Item>
+              </Carousel>
+            </Col>
           </Row>
         </Col>
 
@@ -97,7 +121,7 @@ const HomeContent = () => {
             <h3 className="text-center">Ways To Contribute</h3>
               <Card className="mt-3">
                 <Card.Header className="justify-content-center d-flex">
-                  <ContextAwareToggle eventKey="0">Recycling Guidelines</ContextAwareToggle>
+                  <Button variant="info" className={styles.buttonTrigger}>Recycling Guidelines</Button>
                 </Card.Header>
                   <Card.Img variant="top" src="https://pixfeeds.com/images/save-nature/1280-508877770-different-colored-recycle-waste-bins.jpg"/>
                   <Card.Body>
@@ -110,7 +134,7 @@ const HomeContent = () => {
               <Accordion className="mt-3">
                 <Card>
                   <Card.Header className="justify-content-center d-flex">
-                    <ContextAwareToggle eventKey="0">What Is Recycling?</ContextAwareToggle>
+                    <ContextAwareToggle eventKey="0">More Info</ContextAwareToggle>
                   </Card.Header>
                   <Accordion.Collapse eventKey="0">
                     <>
