@@ -6,8 +6,20 @@ import styles from "../styles/etc.module.css";
 
 const Navigation = () => {
     return (
-        <Navbar variant="dark" expand="md" className={`mb-3 ${styles.footerNav} sticky-top`}>
-            <Navbar.Brand className={styles.anchors}><FaRecycle className={styles.faRecycle}/>&nbsp;<Link href="/">RecycleIT</Link></Navbar.Brand>
+        <Navbar 
+            variant="dark" 
+            expand="md" 
+            className={`mb-3 ${styles.footerNav} sticky-top`}
+        >
+            <Navbar.Brand 
+                className={styles.anchors}
+            >
+                <FaRecycle 
+                    className={styles.faRecycle}
+                />
+                &nbsp;<Link href="/">RecycleIT</Link>
+            </Navbar.Brand>
+
             <Navbar.Toggle aria-controls="nav"/>
             <Navbar.Collapse id="nav">
                 <Nav className={`ml-auto text-center ${styles.anchors}`}>
