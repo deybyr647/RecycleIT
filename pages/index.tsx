@@ -5,9 +5,9 @@ import { BiRecycle } from "react-icons/bi";
 import styles from "../styles/index.module.css";
 import etcStyles from "../styles/etc.module.css";
 
-import MetaData from "../components/metadata";
-import Navigation from "../components/navbar";
-import Footer from "../components/footer";
+import MetaData from "../components/Metadata";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 interface ContextAwareToggleProps {
   children: React.ReactNode,

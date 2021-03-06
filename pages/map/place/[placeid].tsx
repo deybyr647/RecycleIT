@@ -2,11 +2,11 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { Container, Row, Col } from 'react-bootstrap';
 
-import Metadata from '../../../components/metadata';
-import Navigation from '../../../components/navbar';
-import Footer from '../../../components/footer';
+import Metadata from '../../../components/Metadata';
+import Navigation from '../../../components/Navigation';
+import Footer from '../../../components/Footer';
 
-import { getPlaceDetails } from '../../../components/util';
+import { getPlaceDetails } from '../../../components/api';
 
 const Place = ({data}: any) => {
     console.log(data);
