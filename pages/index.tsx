@@ -6,9 +6,9 @@ import { BiRecycle } from "react-icons/bi";
 import styles from "../styles/index.module.css";
 import etcStyles from "../styles/etc.module.css";
 
-import MetaData from "../components/metadata";
-import Navigation from "../components/navbar";
-import Footer from "../components/footer";
+import MetaData from "../components/Metadata";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 
 interface ContextAwareToggleProps {
   children: React.ReactNode,
@@ -21,7 +21,7 @@ const ContextAwareToggle = ({children, eventKey, onToggle}: ContextAwareTogglePr
   const decoratedOnClick = useAccordionToggle(eventKey, () => onToggle && onToggle(eventKey));
   const isCurrentEventKey: boolean = currentEventKey === eventKey;
 
-  return(
+  return (
     <Button
       variant={isCurrentEventKey ? "info" : ""}
       onClick={decoratedOnClick}
@@ -33,7 +33,7 @@ const ContextAwareToggle = ({children, eventKey, onToggle}: ContextAwareTogglePr
 };
 
 const HomeContent = () => {
-  return(
+  return (
     <Container fluid>
       <Row className="mt-1">
         <Col>
@@ -157,7 +157,7 @@ const HomeContent = () => {
 
 
 const Home = () => {
-  return(
+  return (
     <>
       <MetaData title="ReycleIT Home"/>
       <Navigation/>
