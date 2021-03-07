@@ -2,7 +2,7 @@ import { Card, ListGroup, Button } from "react-bootstrap";
 
 import styles from "../../styles/map.module.css";
 
-interface PlaceCardProps{
+interface PlaceCardProps {
     data: {
         address: string,
         id: string,

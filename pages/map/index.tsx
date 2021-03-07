@@ -24,12 +24,12 @@ const MapPageContent = () => {
     const [isFocused, setIsFocused] = useState(false);
     const [places, setPlaces] = useState([]);
     
-    const changeHandler = (e: any): void => {
+    const onZipCodeChange = (e: any): void => {
         e.preventDefault();
         setZip(e.target.value);
     };
 
-    const focusHandler = (e: any, coords: Coords) => {
+    const onPlaceFocus = (e: any, coords: Coords) => {
         e.preventDefault();
         setFocusedMarker((prev: any) => {
             return {
@@ -109,7 +109,7 @@ const MapPageContent = () => {
                             required
                             placeholder="Enter Zip Code..." 
                             value={zip} 
-                            onChange={changeHandler}
+                            onChange={onZipCodeChange}
                         />
 
                         <Button 
@@ -206,7 +206,7 @@ const MapPageContent = () => {
                                 return (
                                     <PlaceCard
                                         data={dataObj}
-                                        onToggle={focusHandler}
+                                        onToggle={onPlaceFocus}
                                         key={index}
                                     />
                                 );

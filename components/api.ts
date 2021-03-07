@@ -63,7 +63,7 @@ const getPlaceDetails = async (id: placeid) => {
             key: mapsKey,
             place_id: id,
             language: "en",
-            fields: "name,photo,url,geometry,formatted_phone_number,opening_hours,website,business_status,formatted_address"
+            fields: "name,url,geometry,formatted_phone_number,opening_hours,website,business_status,formatted_address"
         }
     }
 

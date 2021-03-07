@@ -6,7 +6,7 @@ import styles from "../../../styles/map.module.css";
 
 import Metadata from "../../../components/Metadata";
 import Navigation from "../../../components/Navigation";
-import Footer from "../../../components/Footer";
+import Footer, { FooterPosition } from "../../../components/Footer";
 
 import { Map, Marker, Coords } from "../../../components/map/Map";
 import { getPlaceDetails } from "../../../components/api";
@@ -14,8 +14,7 @@ import { getPlaceDetails } from "../../../components/api";
 const PlaceDetailsCard = ({data}: any) => {
     return (
         <Card 
-            style={{height: "80vh"}} 
-            className={`${styles.placeDetails} d-flex flex-column justify-content-between text-center`}
+            className={`${styles.placeDetailsCard} d-flex flex-column justify-content-between text-center`}
         >
             <Card.Body className="d-flex justify-content-center align-items-center">
                 <Card.Title>{data.name}</Card.Title>
@@ -114,7 +113,7 @@ const PlacePage = ({data}: any) => {
             <Metadata title="Place Info"/>
             <Navigation/>
             <PlacePageContent data={data}/>
-            <Footer style="fixed-bottom"/>
+            <Footer position={FooterPosition.Fixed}/>
         </>
     )
 }
