@@ -17,6 +17,10 @@
     color: #a7c0bb;
 }
 
+.searchBarButton {
+    background-color: #38A3A5;
+}
+
 @media(prefers-reduced-motion: no-preference) {
     .faRecycle {
         animation: fa-recycle-spin infinite 12s linear;

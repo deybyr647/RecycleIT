@@ -29,7 +29,8 @@ const getPlaceData = async (coords: IgetPlaceData) => {
 
         return data.results;
     } catch(err) {
-        if(err) console.error(err);
+        console.error(err);
+        return null;
     }
 }
 
@@ -50,7 +51,8 @@ const getPlaceDataWithZip = async (zip: zipCode) => {
 
         return { data, coords };
     } catch(err) {
-        if(err) console.error(err);
+        console.error(err);
+        return null;
     }
 
 }
@@ -75,7 +77,7 @@ const getPlaceDetails = async (id: placeid) => {
 
         return details;
     } catch(err) {
-        if(err) console.error(err);
+        console.error(err);
         return null;
     }
 }
