@@ -16,9 +16,7 @@ const PlaceDetailsCard = ({data}: any) => {
         <Card 
             className={`${styles.placeDetailsCard} d-flex flex-column justify-content-between text-center`}
         >
-            <Card.Body className="d-flex justify-content-center align-items-center">
-                <Card.Title>{data.name}</Card.Title>
-            </Card.Body>
+            <Card.Title className="pt-3">{data.name}</Card.Title>
             
             <ListGroup className={`${styles.placeDetails} list-group-flush p-3`}>
 
