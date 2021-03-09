@@ -81,7 +81,7 @@ const PlacePageContent = ({data, err}: any) => {
         lng: data.geometry.location.lng
     }
 
-    return(
+    return (
         <Container fluid>
             <Row>
                 <Col md={12} lg={7} xl={7}>
@@ -129,7 +129,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             }
         }
     } catch(err) {
-        if(err) console.error(err);
+        console.error(err);
 
         return {
             props: {
