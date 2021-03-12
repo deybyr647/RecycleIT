@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 
-import { Container, Row, Col, Form, Button, Jumbotron } from "react-bootstrap";
-import { BiCurrentLocation, BiSearchAlt } from "react-icons/bi";
+import { Container, Row, Col, Jumbotron } from "react-bootstrap";
 import styles from "../../styles/map.module.css";
 
 import MetaData from "../../components/Metadata";
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 
-import { Marker, Map, Coords} from "../../components/map/Map";
+import { Marker, Map, Coords } from "../../components/map/Map";
 import Message from "../../components/map/Message";
 import PlaceCard from "../../components/map/PlaceCard";
+import Searchbar from '../../components/Searchbar';
 
 import { getPlaceData, getPlaceDataWithZip } from "../../components/api";
 
@@ -24,13 +24,11 @@ const MapPageContent = () => {
     const [isFocused, setIsFocused] = useState(false);
     const [places, setPlaces] = useState([]);
     
-    const onZipCodeChange = (e: any): void => {
-        e.preventDefault();
-        setZip(e.target.value);
+    const onZipCodeChange = (e: React.FormEvent<HTMLInputElement>): void => {
+        setZip(e.currentTarget.value);
     };
 
-    const onPlaceFocus = (e: any, coords: Coords) => {
-        e.preventDefault();
+    const onPlaceFocus = (coords: Coords): void => {
         setFocusedMarker((prev: any) => {
             return {
                 ...prev,
@@ -40,19 +38,15 @@ const MapPageContent = () => {
         });
 
         setIsFocused(true);
-
-        document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
 
-    const submitHandler = (e: any) => {
-        e.preventDefault();
-        
+    const formSubmitHandler = (): void => {
         (async () => {
             let placeData = await getPlaceDataWithZip(zip);
             setPlaces(placeData?.data);
 
-            setUserCoords(prev => {
+            setUserCoords((prev: any) => {
                 return {
                     ...prev,                                
                     lat: placeData?.coords.lat,              
@@ -64,11 +58,17 @@ const MapPageContent = () => {
         setIsZip(true);
         setIsFocused(false);
         setZip("");
+
+        setFocusedMarker((prev: any) => {
+            return {
+                ...prev,
+                lat: null,
+                lng: null
+            }
+        });
     }
 
-    const getUserCoords = (e: any): void => {
-        e.preventDefault();
-
+    const getUserCoords = (): void => {
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition((position) => {
                 let userCoords = {
@@ -86,8 +86,16 @@ const MapPageContent = () => {
 
                 setIsZip(false);
                 setIsFocused(false);
+
+                setFocusedMarker((prev: any) => {
+                    return {
+                        ...prev,
+                        lat: null,
+                        lng: null
+                    }
+                });
             });
-        };
+        }
     };
 
     useEffect(() => {
@@ -97,41 +105,59 @@ const MapPageContent = () => {
         })();
     }, [userCoords]);
 
-    return(
+    return (
         <Container fluid>
-            <Row className="mb-2 d-flex flex-column">
+            <Row className="mb-2">
                 <Col>
-                    <Form 
-                        className="d-flex flex-row justify-content-between" 
-                        onSubmit={submitHandler}
-                    >
-                        <Form.Control
-                            required
-                            placeholder="Enter Zip Code..." 
-                            value={zip} 
-                            onChange={onZipCodeChange}
-                        />
-
-                        <Button 
-                            variant="info" 
-                            className={`${styles.searchButton} mx-2`} 
-                            onClick={submitHandler}
-                        >
-                            <BiSearchAlt/>
-                        </Button>
-
-                        <Button 
-                            variant="info" 
-                            className={styles.searchButton} 
-                            onClick={getUserCoords}
-                        >
-                            <BiCurrentLocation/>
-                        </Button>
-                    </Form>
+                    <Searchbar
+                        formSubmitAction={formSubmitHandler}
+                        formChangeAction={onZipCodeChange}
+                        onClickAction={getUserCoords}
+                        formValue={zip}
+                    />
                 </Col>
             </Row>
 
             <Row className="mt-2">
+                <Col className="mt-3">
+                    <Jumbotron className={`${styles.cardContainer} shadow`}>
+                        <Message heading="Recycling Centers">
+                            <p>
+                                Here you will see a list of nearby recycling 
+                                centers shown on the map
+                            </p>
+                            <hr/>
+                            <p>
+                                Enter a zip code or use your 
+                                location to get started!
+                            </p>
+                        </Message>
+
+                        {places.length !== 0 ?
+                            (places.map((place, index) => {
+                                
+                                let dataObj = {     //@ts-ignore
+                                    address: place.vicinity,    //@ts-ignore
+                                    id: place.place_id,     //@ts-ignore
+                                    location: place.geometry.location,      //@ts-ignore
+                                    placeName: place.name,      //@ts-ignore
+                                    status: place.business_status,
+                                }
+
+                                return (
+                                    <PlaceCard
+                                        data={dataObj}
+                                        onToggle={onPlaceFocus}
+                                        key={index}
+                                    />
+                                );
+                            }))
+                            :
+                            null
+                        }
+                    </Jumbotron>
+                </Col>
+
                 <Col md={12} lg={8} xl={8} className="mt-3">
                     <Map
                         //@ts-ignore
@@ -176,45 +202,6 @@ const MapPageContent = () => {
                             null
                         }
                     </Map>
-                </Col>
-
-                <Col className="mt-3">
-                    <Jumbotron className={`${styles.cardContainer} shadow`}>
-                        <Message heading="Recycling Centers">
-                            <p>
-                                Here you will see a list of nearby recycling 
-                                centers shown on the map
-                            </p>
-                            <hr/>
-                            <p>
-                                Enter a zip code or use your 
-                                location to get started!
-                            </p>
-                        </Message>
-
-                        {places.length !== 0 ?
-                            (places.map((place, index) => {
-                                
-                                let dataObj = {     //@ts-ignore
-                                    address: place.vicinity,    //@ts-ignore
-                                    id: place.place_id,     //@ts-ignore
-                                    location: place.geometry.location,      //@ts-ignore
-                                    placeName: place.name,      //@ts-ignore
-                                    status: place.business_status,
-                                }
-
-                                return (
-                                    <PlaceCard
-                                        data={dataObj}
-                                        onToggle={onPlaceFocus}
-                                        key={index}
-                                    />
-                                );
-                            }))
-                            :
-                            null
-                        }
-                    </Jumbotron>
                 </Col>
             </Row>
         </Container>

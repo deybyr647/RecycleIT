@@ -1,5 +1,5 @@
 import { Card, ListGroup, Button } from "react-bootstrap";
-
+import { Coords } from '../../components/map/Map';
 import styles from "../../styles/map.module.css";
 
 interface PlaceCardProps {
@@ -13,14 +13,13 @@ interface PlaceCardProps {
         placeName: string,
         status: string,
     },
-    onToggle: Function
+    onToggle: (location: Coords) => void
 }
 
 const PlaceCard = ({onToggle, data}: PlaceCardProps) => {
 
-    const clickHandler = (e: any) => {
-        e.preventDefault();
-        onToggle(e, data.location);
+    const clickHandler = (): void => {
+        onToggle(data.location);
     }
 
     return (
@@ -36,7 +35,7 @@ const PlaceCard = ({onToggle, data}: PlaceCardProps) => {
 
             <Card.Body className="d-flex flex-row justify-content-around">
                 <Card.Link 
-                    className={`${styles.searchButton} btn btn-info`}
+                    className={`${styles.placeCardButton} btn btn-info`}
                     href={`/map/place/${data.id}`}
                 >
                     More Information
@@ -45,14 +44,14 @@ const PlaceCard = ({onToggle, data}: PlaceCardProps) => {
                 <Button 
                     onClick={clickHandler} 
                     variant="info" 
-                    className={`ml-3 ${styles.searchButton}`}
+                    className={`ml-3 ${styles.placeCardButton}`}
                 >
                     See on Map
                 </Button>
 
             </Card.Body>
         </Card>
-    )
+    );
 }
 
 export default PlaceCard;

@@ -16,9 +16,7 @@ const PlaceDetailsCard = ({data}: any) => {
         <Card 
             className={`${styles.placeDetailsCard} d-flex flex-column justify-content-between text-center`}
         >
-            <Card.Body className="d-flex justify-content-center align-items-center">
-                <Card.Title>{data.name}</Card.Title>
-            </Card.Body>
+            <Card.Title className="pt-3">{data.name}</Card.Title>
             
             <ListGroup className={`${styles.placeDetails} list-group-flush p-3`}>
 
@@ -83,7 +81,7 @@ const PlacePageContent = ({data, err}: any) => {
         lng: data.geometry.location.lng
     }
 
-    return(
+    return (
         <Container fluid>
             <Row>
                 <Col md={12} lg={7} xl={7}>
@@ -131,7 +129,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             }
         }
     } catch(err) {
-        if(err) console.error(err);
+        console.error(err);
 
         return {
             props: {
