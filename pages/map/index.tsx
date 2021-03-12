@@ -10,7 +10,7 @@ import Footer from "../../components/Footer";
 import { Marker, Map, Coords } from "../../components/map/Map";
 import Message from "../../components/map/Message";
 import PlaceCard from "../../components/map/PlaceCard";
-import Searchbar from '../../components/Searchbar';
+import Searchbar from '../../components/map/Searchbar';
 
 import { getPlaceData, getPlaceDataWithZip } from "../../components/api";
 

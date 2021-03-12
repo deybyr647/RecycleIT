@@ -28,10 +28,6 @@ const Navigation = () => {
                     </Nav.Item>
 
                     <Nav.Item className="nav-link">
-                        <Link href="/feed">Feed</Link>
-                    </Nav.Item>
-
-                    <Nav.Item className="nav-link">
                         <Link href="/about">About</Link>
                     </Nav.Item>
                 </Nav>
