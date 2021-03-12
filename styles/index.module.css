@@ -9,3 +9,16 @@
 .buttonTrigger {
     background-color: #38A3A5;
 }
+
+.slideOverlay {
+    background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));
+}
+
+.links {
+    color: white;
+}
+
+.links:hover {
+    text-decoration: none;
+    color: #C7F9CC;
+}

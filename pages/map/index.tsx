@@ -38,7 +38,6 @@ const MapPageContent = () => {
         });
 
         setIsFocused(true);
-        document.documentElement.scrollTop = 0;
     }
 
     const formSubmitHandler = (): void => {

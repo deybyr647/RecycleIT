@@ -1,6 +1,6 @@
 import { Form, Button } from 'react-bootstrap';
 import { BiCurrentLocation, BiSearchAlt } from "react-icons/bi";
-import styles from "../styles/etc.module.css";
+import styles from "../../styles/etc.module.css";
 
 interface SearchbarProps {
     formSubmitAction: () => void,
