@@ -14,14 +14,14 @@ import { getPlaceDetails } from "../../../components/api";
 const PlaceDetailsCard = ({data}: any) => {
     return (
         <Card 
-            className={`${styles.placeDetailsCard} d-flex flex-column justify-content-between text-center`}
+            className={`${styles.placeDetailsCard} text-center`}
         >
-            <Card.Title className="pt-3">{data.name}</Card.Title>
+            <Card.Title className="m-auto p-3">{data.name}</Card.Title>
             
             <ListGroup className={`${styles.placeDetails} list-group-flush p-3`}>
 
                 <ListGroup.Item className={styles.placeDetails}>
-                    Schedule: <br/> <br/>
+                    <b>Schedule:</b> <br/> <br/>
                     {   
                         data.opening_hours ?
                         (data.opening_hours.weekday_text.map((el: any, index: any) => (
@@ -33,12 +33,12 @@ const PlaceDetailsCard = ({data}: any) => {
                 </ListGroup.Item>
 
                 <ListGroup.Item className={styles.placeDetails}>
-                    Address:<br/>
+                    <b>Address:</b> <br/>
                     {data.formatted_address}
                 </ListGroup.Item>
 
                 <ListGroup.Item className={styles.placeDetails}>
-                    Phone Number:&nbsp;
+                    <b>Phone Number:</b>&nbsp;
                     <Card.Link 
                         href={`tel:${data.formatted_phone_number}`}
                     >
@@ -47,13 +47,13 @@ const PlaceDetailsCard = ({data}: any) => {
                 </ListGroup.Item>
 
                 <ListGroup.Item className={styles.placeDetails}>
-                    Status: {data.business_status}
+                    <b>Status:</b> {data.business_status}
                 </ListGroup.Item>
 
                 <ListGroup.Item className={styles.placeDetails}>
                     <Card.Link 
                         href={data.website ?? "#"} 
-                        className={`btn btn-info ${styles.searchButton}`}
+                        className={`btn btn-info ${styles.placeCardButton} m-2`}
                     >
                         {data.website ? 
                             "Visit Website"
@@ -64,7 +64,7 @@ const PlaceDetailsCard = ({data}: any) => {
 
                     <Card.Link 
                         href={data.url} 
-                        className={`btn btn-info ${styles.searchButton}`}
+                        className={`btn btn-info ${styles.placeCardButton} m-2`}
                     >
                         See in Google Maps
                     </Card.Link>
@@ -84,6 +84,10 @@ const PlacePageContent = ({data, err}: any) => {
     return (
         <Container fluid>
             <Row>
+                <Col className="mb-4">
+                    <PlaceDetailsCard data={data}/>
+                </Col>
+
                 <Col md={12} lg={7} xl={7}>
                     <Map 
                         center={centerCoords}
@@ -96,10 +100,6 @@ const PlacePageContent = ({data, err}: any) => {
                         />
                     </Map>
                 </Col>
-
-                <Col>
-                    <PlaceDetailsCard data={data}/>
-                </Col>
             </Row>
         </Container>
     )
@@ -111,7 +111,7 @@ const PlacePage = ({data}: any) => {
             <Metadata title="Place Info"/>
             <Navigation/>
             <PlacePageContent data={data}/>
-            <Footer position={FooterPosition.Fixed}/>
+            <Footer position={FooterPosition.Sticky}/>
         </>
     )
 }
