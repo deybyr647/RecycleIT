@@ -21,9 +21,20 @@ const AboutContent = () => {
                             <Card.Text>
                                 The idea for RecycleNearMe came to me
                                 over summer of 2020, when I participated in
-                                ASC. I wanted to create something recycling
+                                <span 
+                                    title="All Star Code"
+                                    className={styles.abbrText}
+                                >
+                                    &nbsp;ASC
+                                </span>. I wanted to create something recycling
                                 related which would help make recycling easier. 
-                                Thus, over the course of ASC demo week, 
+                                Thus, over the course of
+                                <span 
+                                    title="All Star Code"
+                                    className={styles.abbrText}
+                                >
+                                    &nbsp;ASC
+                                </span> demo week, 
                                 RecycleNearMe was born.
                                 Half a year later, here's RecycleIT,
                                 featuring newer technologies,
@@ -64,25 +75,25 @@ const AboutContent = () => {
                         <h5 className="text-center font-italic">Making Recycling Easy</h5>
                     </Jumbotron>
 
-                    <Jumbotron className={`${styles.contentContainer}`}>
+                    <Jumbotron className={`${styles.contentContainer} shadow`}>
                         <h5 className="text-center pb-5">RecycleIT Was Developed With...</h5>
 
                         <Container className="d-flex justify-content-center pt-4">
                             <Row>
                                 <Col className="mx-4">
-                                    <SiNextDotJs size={36}/>
+                                    <SiNextDotJs size={36} title="NextJS" className={styles.icon}/>
                                 </Col>
 
                                 <Col className="mx-4">
-                                    <SiBootstrap size={36}/>
+                                    <SiBootstrap size={36} title="Bootstrap" className={styles.icon}/>
                                 </Col>
 
                                 <Col className="mx-4">
-                                    <SiTypescript size={36}/>
+                                    <SiTypescript size={36} title="TypeScript" className={styles.icon}/>
                                 </Col>
 
                                 <Col className="mx-4">
-                                    <IoLogoVercel size={36}/>
+                                    <IoLogoVercel size={36} title="Vercel" className={styles.icon}/>
                                 </Col>
                             </Row>
                         </Container>

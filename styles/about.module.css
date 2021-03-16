@@ -5,3 +5,11 @@
 .buttonLink {
     background-color: #38A3A5;
 }
+
+.abbrText {
+    color: #38A3A5;
+}
+
+.icon :hover {
+    color: #38A3A5
+}
