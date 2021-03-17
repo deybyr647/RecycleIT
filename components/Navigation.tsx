@@ -11,13 +11,13 @@ const Navigation = () => {
             expand="md" 
             className={`mb-3 ${styles.footerNav} sticky-top`}
         >
-            <Navbar.Brand 
-                className={styles.anchors}
-            >
-                <FaRecycle 
-                    className={styles.faRecycle}
-                />
-                &nbsp;<Link href="/">RecycleIT</Link>
+            <Navbar.Brand className={styles.anchors}>
+                <Link href="/">
+                    <a>
+                        <FaRecycle className={styles.faRecycle}/>
+                        &nbsp;RecycleIT
+                    </a>
+                </Link>
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="nav"/>

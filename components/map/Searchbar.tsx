@@ -39,7 +39,6 @@ const Searchbar = ({formSubmitAction, formChangeAction, onClickAction, formValue
                 minLength={5}
                 maxLength={5}
                 pattern="[0-9]*"
-                type="number"
             />
 
             <Button 

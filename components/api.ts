@@ -13,7 +13,7 @@ type placeid = string | string[] | undefined;
 
 const getPlaceData = async (coords: IgetPlaceData) => {
     const dataReqConfig: AxiosRequestConfig = {
-        url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
+        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
         method: "get",
         params: {
             key: mapsKey,
@@ -59,7 +59,7 @@ const getPlaceDataWithZip = async (zip: zipCode) => {
 
 const getPlaceDetails = async (id: placeid) => {
     const placeDetailsReqConfig: AxiosRequestConfig = {
-        url: `https://maps.googleapis.com/maps/api/place/details/json`,
+        url: `${proxy}https://maps.googleapis.com/maps/api/place/details/json`,
         method: "get",
         params: {
             key: mapsKey,

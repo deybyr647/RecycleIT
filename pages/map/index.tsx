@@ -140,7 +140,7 @@ const MapPageContent = () => {
                             </p>
                         </Message>
 
-                        {places.length !== 0 ?
+                        {places !== null ?
                             (places.map((place, index) => {
                                 
                                 let dataObj = {     //@ts-ignore
@@ -160,7 +160,11 @@ const MapPageContent = () => {
                                 );
                             }))
                             :
-                            null
+                            <Message heading="Oops!" variant="danger">
+                                <p>Something Went Wrong</p>
+                                <hr/>
+                                <p>Please Try Again</p>
+                            </Message>
                         }
                     </Jumbotron>
                 </Col>
@@ -180,8 +184,8 @@ const MapPageContent = () => {
                             null
                         }
 
-                        {
-                            places.map((place, index) => {
+                        {places ?
+                            (places.map((place, index) => {
                                 //@ts-ignore
                                 let placeCoords = place.geometry.location;
                                 
@@ -193,7 +197,9 @@ const MapPageContent = () => {
                                         color="green"
                                     />
                                 );
-                            })
+                            }))
+                            :
+                            null
                         }
 
                         {focusedMarker.lat && focusedMarker.lng ?

@@ -1,5 +1,7 @@
-import { Card, ListGroup, Button } from "react-bootstrap";
+import Link from 'next/link';
 import { Coords } from '../../components/map/Map';
+
+import { Card, ListGroup, Button } from "react-bootstrap";
 import styles from "../../styles/map.module.css";
 
 interface PlaceCardProps {
@@ -34,12 +36,9 @@ const PlaceCard = ({onToggle, data}: PlaceCardProps) => {
             </ListGroup>
 
             <Card.Body className="d-flex flex-row justify-content-around">
-                <Card.Link 
-                    className={`${styles.placeCardButton} btn btn-info`}
-                    href={`/map/place/${data.id}`}
-                >
-                    More Information
-                </Card.Link>
+                <Link href={`/map/place/${data.id}`}>
+                    <a className="btn btn-info">More Information</a>
+                </Link>
 
                 <Button 
                     onClick={clickHandler} 
