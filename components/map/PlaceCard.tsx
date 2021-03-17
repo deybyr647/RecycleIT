@@ -37,7 +37,7 @@ const PlaceCard = ({onToggle, data}: PlaceCardProps) => {
 
             <Card.Body className="d-flex flex-row justify-content-around">
                 <Link href={`/map/place/${data.id}`}>
-                    <a className="btn btn-info">More Information</a>
+                    <a className={`${styles.placeCardButton} btn btn-info`}>More Information</a>
                 </Link>
 
                 <Button 
