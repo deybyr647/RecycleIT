@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
-const proxy: string = "https://cors-anywhere.herokuapp.com/";
+const proxy: string = "https://cors-proxy.htmldriven.com/?url=";
 
 interface IgetPlaceData {
     lat: number | null,
@@ -13,7 +13,7 @@ type placeid = string | string[] | undefined;
 
 const getPlaceData = async (coords: IgetPlaceData) => {
     const dataReqConfig: AxiosRequestConfig = {
-        url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
+        url: `${proxy}https://maps.googleapis.com/maps/api/place/nearbysearch/json`,
         method: "get",
         params: {
             key: mapsKey,
@@ -36,7 +36,7 @@ const getPlaceData = async (coords: IgetPlaceData) => {
 
 const getPlaceDataWithZip = async (zip: zipCode) => {
     const geocodeReqConfig: AxiosRequestConfig = {
-        url: `https://maps.googleapis.com/maps/api/geocode/json`,
+        url: `${proxy}https://maps.googleapis.com/maps/api/geocode/json`,
         method: "get",
         params: {
             key: mapsKey,
@@ -59,7 +59,7 @@ const getPlaceDataWithZip = async (zip: zipCode) => {
 
 const getPlaceDetails = async (id: placeid) => {
     const placeDetailsReqConfig: AxiosRequestConfig = {
-        url: `https://maps.googleapis.com/maps/api/place/details/json`,
+        url: `${proxy}https://maps.googleapis.com/maps/api/place/details/json`,
         method: "get",
         params: {
             key: mapsKey,
