@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
-const proxy: string = "https://cors-proxy.htmldriven.com/?url=";
+const proxy: string | undefined = process.env.NEXT_PUBLIC_PROXY;
 
 interface IgetPlaceData {
     lat: number | null,
@@ -20,6 +20,9 @@ const getPlaceData = async (coords: IgetPlaceData) => {
             location: `${coords.lat},${coords.lng}`,
             radius: 16094,
             keyword: "recycling center"
+        }, 
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
         }
     }
 
@@ -41,6 +44,9 @@ const getPlaceDataWithZip = async (zip: zipCode) => {
         params: {
             key: mapsKey,
             address: zip
+        },
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
         }
     }
 
@@ -66,6 +72,9 @@ const getPlaceDetails = async (id: placeid) => {
             place_id: id,
             language: "en",
             fields: "name,url,geometry,formatted_phone_number,opening_hours,website,business_status,formatted_address"
+        },
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
         }
     }
 
