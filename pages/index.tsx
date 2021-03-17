@@ -71,13 +71,17 @@ const HomeContent = () => {
                   <>
 
                     <Card.Img 
-                      src="https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1161&q=80"
+                      src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=967&q=80"
+                      className="mb-1"
                     />
 
                     <Card.Body>
-                      Simply put, recycling is the process of converting waste materials into new materials! 
-                      Of course, there's more to it than just creating new from the old. 
-                      The process is also beneficial towards the surrounding environment in many ways!
+                      As previously mentioned, Recycling has various benefits!
+                      For instance, recycling reduces the amount of waste sent to landfills
+                      and incinerators. Recycling also helps to maintain a cleaner environment, meaning
+                      less plastic bottles and other waste in parks and on the streets! Most importantly,
+                      it helps us reduce our energy use & allows for the conservation of our precious natural resources,
+                      such as water and our trees!
                     </Card.Body>
 
                   </>
@@ -109,7 +113,7 @@ const HomeContent = () => {
             </Col>
 
             <Col className="mt-3">
-              <Carousel>
+              <Carousel className="shadow">
                 <Carousel.Item>
                   <Image 
                     src="https://static01.nyt.com/images/2020/03/12/nyregion/12nygarbage/merlin_164230761_a65635a0-b47e-45d6-8c32-759ab0ace1af-jumbo.jpg?quality=90&auto=webp" 
@@ -122,7 +126,7 @@ const HomeContent = () => {
                   <Carousel.Caption>
                     <a 
                       href="https://www.nytimes.com/2020/03/13/nyregion/ny-garbage-recycling.html?auth=login-google&searchResultPosition=34"
-                      className={styles.links}
+                      className={`${styles.links} font-italic`}
                     >
                       Finally, a Plan for New York’s Sidewalk Trash Bag Mountains
                     </a>
@@ -141,7 +145,7 @@ const HomeContent = () => {
                   <Carousel.Caption>
                     <a
                       href="https://www.nytimes.com/2020/09/29/world/europe/plastic-recycling-super-enzyme.html?searchResultPosition=16"
-                      className={styles.links}
+                      className={`${styles.links} font-italic`}
                     >
                       ‘Super-Enzyme’ Speeds Up Breakdown of Plastic, Researchers Say
                     </a>
@@ -160,7 +164,7 @@ const HomeContent = () => {
                   <Carousel.Caption>
                     <a
                       href="https://www.nytimes.com/2020/10/30/climate/plastic-pollution-oceans.html?searchResultPosition=10"
-                      className={styles.links}
+                      className={`${styles.links} font-italic`}
                     >
                       Americans May Add Five Times More Plastic to the Oceans Than Thought
                     </a>
@@ -170,7 +174,7 @@ const HomeContent = () => {
             </Col>
 
             <Col className="mt-3">
-              <Carousel>
+              <Carousel className="shadow">
                 <Carousel.Item>
                   <Image 
                     src="https://static01.nyt.com/images/2020/11/08/fashion/07CDS-1/07CDS-1-jumbo.jpg?quality=90&auto=webp" 
@@ -183,7 +187,7 @@ const HomeContent = () => {
                   <Carousel.Caption>
                     <a
                       href="https://www.nytimes.com/2020/11/07/style/the-uneasy-afterlife-of-our-dazzling-trash.html?searchResultPosition=9"
-                      className={styles.links}
+                      className={`${styles.links} font-italic`}
                     >
                       The Uneasy Afterlife of Our Dazzling Trash
                     </a>
@@ -202,7 +206,7 @@ const HomeContent = () => {
                   <Carousel.Caption>
                     <a
                       href="https://www.nytimes.com/2020/11/19/fashion/watches-packaging-breitling.html?searchResultPosition=30"
-                      className={styles.links}
+                      className={`${styles.links} font-italic`}
                     >
                       Reducing the Impact of the Packaging
                     </a>
@@ -221,7 +225,7 @@ const HomeContent = () => {
                   <Carousel.Caption>
                     <a
                       href="https://www.nytimes.com/2021/01/26/fashion/sustainability-clothes-environment-technology.html?searchResultPosition=4"
-                      className={styles.links}
+                      className={`${styles.links} font-italic`}
                     >
                       Fashion Trends Are Often Recycled. Now More Clothing Can Be, Too.
                     </a>
@@ -251,8 +255,9 @@ const HomeContent = () => {
                   />
 
                   <Card.Body>
-                    One of the key steps in the journey towards contributing is learning about reycling guidelines!
-                    You can head over to the EPA's (Environment Protection Agency) website to learn the basics! You may
+                    A key step in the journey towards contributing is learning about reycling guidelines!
+                    Head over to the <a className={`${styles.altLinks} font-italic`} title="Environment Protection Agency" href="https://www.epa.gov/recycle">EPA's</a> 
+                    &nbsp;site to learn the basics! You may
                     also want to search the web for guidelines specific to your community!
                   </Card.Body>
               </Card>
@@ -265,11 +270,16 @@ const HomeContent = () => {
 
                   <Accordion.Collapse eventKey="0">
                     <>
-                      <Card.Img src="https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1161&q=80"/>
+                      <Card.Img 
+                        src="/logo.webp"
+                        className="rounded-circle p-2"
+                      />
                       <Card.Body>
-                        Simply put, recycling is the process of converting waste materials into new materials! 
-                        Of course, there's more to it than just creating new from the old. 
-                        The process is also beneficial towards the surrounding environment in many ways!
+                        RecycleIT was designed to help the average person recycle! 
+                        Want to see if there's a recycling center nearby? Head over to the map!
+                        You can enter a zip code or use your current location to see what recycling
+                        centers are near you! Need more info about a recycling center?
+                        RecycleIT has you covered!
                       </Card.Body>
                     </>
                   </Accordion.Collapse>

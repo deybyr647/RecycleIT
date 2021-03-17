@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 
 import { Container, Row, Col, Jumbotron } from "react-bootstrap";
 import styles from "../../styles/map.module.css";
@@ -97,11 +97,19 @@ const MapPageContent = () => {
         }
     };
 
-    useEffect(() => {
+    const firstUpdate = useRef(true);
+
+    useLayoutEffect(() => {
+        if(firstUpdate.current){
+            firstUpdate.current = false;
+            return;
+        }
+
         (async () => {
             let placeData = await getPlaceData(userCoords);
             setPlaces(placeData);
         })();
+
     }, [userCoords]);
 
     return (
@@ -172,8 +180,8 @@ const MapPageContent = () => {
                             null
                         }
 
-                        {places.length !== 0 ?
-                            (places.map((place, index) => {
+                        {
+                            places.map((place, index) => {
                                 //@ts-ignore
                                 let placeCoords = place.geometry.location;
                                 
@@ -185,9 +193,7 @@ const MapPageContent = () => {
                                         color="green"
                                     />
                                 );
-                            }))
-                            :
-                            null
+                            })
                         }
 
                         {focusedMarker.lat && focusedMarker.lng ?

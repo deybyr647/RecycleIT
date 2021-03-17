@@ -18,7 +18,11 @@
     color: white;
 }
 
-.links:hover {
+.altLinks {
+    color: black;
+}
+
+.links:hover, .altLinks:hover {
     text-decoration: none;
     color: #57CC99;
 }

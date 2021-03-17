@@ -33,9 +33,13 @@ const Searchbar = ({formSubmitAction, formChangeAction, onClickAction, formValue
         >
             <Form.Control
                 required
-                placeholder="Enter Zip Code..." 
+                placeholder="Enter Zip Code... (e.g. 10001)" 
                 value={formValue} 
                 onChange={formChangeHandler}
+                minLength={5}
+                maxLength={5}
+                pattern="[0-9]*"
+                type="number"
             />
 
             <Button 
