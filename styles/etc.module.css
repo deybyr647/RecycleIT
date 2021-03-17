@@ -1,0 +1,41 @@
+.anchors a:active, .anchors a:hover {
+    text-decoration: none;
+    color: #a7c0bb;
+}
+
+.anchors a {
+    color: white;
+}
+
+.footerNav {
+    background-color: #22577A;
+    color: white;
+}
+  
+.footerNav :hover {
+    text-decoration: none;
+    color: #a7c0bb;
+}
+
+.searchBarButton {
+    background-color: #38A3A5;
+}
+
+.faRecycle {
+    transition: all 300ms ease-out;
+}
+
+@media(prefers-reduced-motion: no-preference) {
+    .faRecycle {
+        animation: fa-recycle-spin infinite 12s linear;
+    }
+}
+
+@keyframes fa-recycle-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
