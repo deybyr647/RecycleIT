@@ -36,7 +36,7 @@ const getPlaceData = async (coords: IgetPlaceData) => {
 
 const getPlaceDataWithZip = async (zip: zipCode) => {
     const geocodeReqConfig: AxiosRequestConfig = {
-        url: `${proxy}https://maps.googleapis.com/maps/api/geocode/json`,
+        url: `https://maps.googleapis.com/maps/api/geocode/json`,
         method: "get",
         params: {
             key: mapsKey,
@@ -59,7 +59,7 @@ const getPlaceDataWithZip = async (zip: zipCode) => {
 
 const getPlaceDetails = async (id: placeid) => {
     const placeDetailsReqConfig: AxiosRequestConfig = {
-        url: `${proxy}https://maps.googleapis.com/maps/api/place/details/json`,
+        url: `https://maps.googleapis.com/maps/api/place/details/json`,
         method: "get",
         params: {
             key: mapsKey,
