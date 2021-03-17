@@ -91,6 +91,7 @@ const PlacePageContent = ({data, err}: any) => {
                 <Col md={12} lg={7} xl={7}>
                     <Map 
                         center={centerCoords}
+                        //@ts-ignore
                         zoom={18}
                     >
                         <Marker
