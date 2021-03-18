@@ -47,7 +47,7 @@ const AboutContent = () => {
                         <Card.Body className="mx-auto">
                             <Card.Link 
                                 className={`${styles.buttonLink} btn btn-info`}
-                                href="https://deybyr647.github.io/RecycleNearMe/"
+                                href="https://rnm.deybyr647.com"
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
