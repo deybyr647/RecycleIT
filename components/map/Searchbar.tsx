@@ -43,8 +43,8 @@ const Searchbar = ({formSubmitAction, formChangeAction, onClickAction, formValue
 
             <Button 
                 variant="info" 
-                className={`${styles.searchBarButton} mx-2`} 
-                onClick={formSubmitHandler}
+                className={`${styles.searchBarButton} mx-2`}
+                type="submit"
             >
                 <BiSearchAlt/>
             </Button>

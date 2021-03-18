@@ -13,6 +13,8 @@ const MetaData = ({title}: MetaDataProps) => (
         <meta name="robots" content="index, follow"/>
         <meta property="og:title" content="RecycleIT"/>
         <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://recycleit.deybyr647.com"/>
+        <meta property="og:image" content="%PUBLIC_URL%/opengraph.png"/>
         <meta property="og:description" content="RecycleIT - An Easy Way To Recycling"/>
         <link
             rel="stylesheet"
