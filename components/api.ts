@@ -1,8 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
 const mapsKey: string | undefined = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
-//const proxy: string | undefined = process.env.NEXT_PUBLIC_PROXY;
-const proxy: string = "";
+const proxy: string | undefined = process.env.NEXT_PUBLIC_PROXY;
 
 interface IgetPlaceData {
     lat: number | null,
