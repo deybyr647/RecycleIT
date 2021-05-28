@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-interface MetaDataProps{
+interface MetaDataProps {
     title: string,
 }
 
