@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { Container, Row, Col, Jumbotron } from "react-bootstrap";
 import styles from "../../styles/map.module.css";
@@ -11,8 +11,6 @@ import { Marker, Map, Coords } from "../../components/map/Map";
 import Message from "../../components/map/Message";
 import PlaceCard from "../../components/map/PlaceCard";
 import Searchbar from '../../components/map/Searchbar';
-
-import { getPlaceData, getPlaceDataWithZip } from "../../components/api";
 
 const MapPageContent = () => {
     const [zip, setZip] = useState("");
@@ -42,8 +40,8 @@ const MapPageContent = () => {
 
     const formSubmitHandler = (): void => {
         (async () => {
-            let placeData = await getPlaceDataWithZip(zip);
-            setPlaces(placeData?.data);
+            let placeDataReq = await fetch(`/api/map?zip=${zip}`);
+            let placeData = await placeDataReq.json();
 
             setUserCoords((prev: any) => {
                 return {
@@ -99,14 +97,12 @@ const MapPageContent = () => {
 
     const firstUpdate = useRef(true);
 
-    useLayoutEffect(() => {
-        if(firstUpdate.current){
-            firstUpdate.current = false;
-            return;
-        }
+    useEffect(() => {
 
         (async () => {
-            let placeData = await getPlaceData(userCoords);
+            let placeDataReq = await fetch(`/api/map?lat=${userCoords.lat}&lng=${userCoords.lng}`);
+            let placeData = await placeDataReq.json();
+
             setPlaces(placeData);
         })();
 
