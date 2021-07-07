@@ -15,7 +15,12 @@ const AboutContent = () => {
             <Row>
                 <Col md={12} lg={4} xl={3} className="mb-4">
                     <Card className={`${styles.contentContainer} shadow`}>
-                        <Card.Img src="/rnm.webp" className="rounded-circle" variant="top"/>
+                        <Card.Img
+                            src="/rnm.webp"
+                            className="rounded-circle"
+                            variant="top"
+                            alt="RecycleNearMe Logo"
+                        />
                         <Card.Body>
                             <Card.Title className="text-center">RecycleNearMe</Card.Title>
                             <Card.Text>
@@ -70,7 +75,12 @@ const AboutContent = () => {
                     <Jumbotron className={`${styles.contentContainer} d-flex flex-column align-items-center shadow`}>
                         <h2 className="text-center">About RecycleIT</h2>
 
-                        <Image className="w-50 shadow-lg my-4" roundedCircle src="/logo.webp"/>
+                        <Image
+                            className="w-50 shadow-lg my-4"
+                            roundedCircle
+                            src="/logo.webp"
+                            alt="RecycleIT Logo"
+                        />
 
                         <h5 className="text-center font-italic">Making Recycling Easy</h5>
                     </Jumbotron>

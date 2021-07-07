@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Coords } from '../../components/map/Map';
+import { Coords } from './Map';
 
 import { Card, ListGroup, Button } from "react-bootstrap";
 import styles from "../../styles/map.module.css";

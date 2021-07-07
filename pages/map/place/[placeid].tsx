@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import axios, {AxiosRequestConfig} from "axios";
 
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 
@@ -9,7 +10,7 @@ import Navigation from "../../../components/Navigation";
 import Footer, { FooterPosition } from "../../../components/Footer";
 
 import { Map, Marker, Coords } from "../../../components/map/Map";
-import { getPlaceDetails } from "../../../components/api";
+const mapsKey = process.env.GOOGLEMAPS_API_KEY
 
 const PlaceDetailsCard = ({data}: any) => {
     return (
@@ -120,12 +121,27 @@ const PlacePage = ({data}: any) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { placeid } = context.query;
 
+    const placeDetailsReqConfig: AxiosRequestConfig = {
+        url: "https://maps.googleapis.com/maps/api/place/details/json",
+        method: "get",
+        params: {
+            key: mapsKey,
+            place_id: placeid,
+            language: "en",
+            fields: "name,url,geometry,formatted_phone_number,opening_hours,website,business_status,formatted_address"
+        },
+        headers: {
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    }
+
     try {
-        let placeDetails = await getPlaceDetails(placeid);
+        const placeDetails = await axios(placeDetailsReqConfig);
+        const data = await placeDetails.data.result;
 
         return {
             props: {
-                data: placeDetails,
+                data: {...data},
                 error: null
             }
         }
