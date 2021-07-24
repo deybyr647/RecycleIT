@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, FormEvent } from "react";
 
 import { Container, Row, Col, Jumbotron } from "react-bootstrap";
 import styles from "../../styles/map.module.css";
@@ -22,7 +22,7 @@ const MapPageContent = () => {
     const [isFocused, setIsFocused] = useState(false);
     const [places, setPlaces] = useState([]);
     
-    const onZipCodeChange = (e: React.FormEvent<HTMLInputElement>): void => {
+    const onZipCodeChange = (e: FormEvent<HTMLInputElement>): void => {
         setZip(e.currentTarget.value);
     };
 
