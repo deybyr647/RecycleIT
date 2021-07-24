@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import axios, {AxiosRequestConfig} from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 
