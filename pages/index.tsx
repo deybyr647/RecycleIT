@@ -296,7 +296,7 @@ const HomeContent = () => {
 const Home = () => {
   return (
     <>
-      <MetaData title="ReycleIT Home"/>
+      <MetaData title="RecycleIT Home"/>
       <Navigation/>
       <HomeContent/>
       <Footer/>
